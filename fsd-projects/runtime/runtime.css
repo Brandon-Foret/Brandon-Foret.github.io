@@ -1,0 +1,22 @@
+/* runtime.css */
+/* Styles for Runtime Neo auto-runner game */
+
+img {
+  display: none;
+}
+
+#gameCanvas {
+  position: absolute;
+  border: 4px solid #000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body {
+  margin: 0;
+  background-color: #00ccff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}

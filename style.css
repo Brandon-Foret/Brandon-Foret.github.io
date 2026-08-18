@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #947706;
+  color: #222;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+#all-contents {
+  max-width: 1500px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 32px 40px;
+}

@@ -1,0 +1,19 @@
+body {
+  margin: 0px;
+  background-color: #202737;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  background-color: lightblue;
+  margin: 20px;
+  border-radius: 15px;
+  border: 5px solid rgba(118, 0, 233, 0.375);
+}
+
+img {
+  display: none;
+}

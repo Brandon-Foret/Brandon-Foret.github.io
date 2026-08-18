@@ -1,0 +1,43 @@
+{
+  "name": "Student Web Dev Environment",
+  "customizations": {
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode", "ritwickdey.LiveServer"],
+      "settings": {
+        "github.copilot.enable": {
+          "*": false
+        },
+        "github.copilot.inlineSuggest.enable": false,
+        "github.copilot.chat.enable": false,
+        "workbench.editorAssociations": {
+          "*.md": "vscode.markdown.preview.editor"
+        },
+        "workbench.editor.customLabels.patterns": {
+          "**/README.md": "README.md (${dirname})",
+          "*/index.html": "index.html (homepage)",
+          "**/index.html": "index.html (${dirname})"
+        },
+        "workbench.secondarySideBar.defaultVisibility": "hidden",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.wordWrap": "on",
+        "[html]": {
+          "editor.defaultFormatter": "vscode.html-language-features",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 2
+        },
+        "[css]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 2,
+          "prettier.tabWidth": 2
+        }
+      }
+    }
+  },
+  "postAttachCommand": "code index.html project-instructions/git-commands.md project-instructions/first-website.md project-instructions/codespaces-tutorial.md"
+}

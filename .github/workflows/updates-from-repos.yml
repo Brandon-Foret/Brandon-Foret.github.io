@@ -1,0 +1,87 @@
+name: Updates from Repos
+on:
+  repository_dispatch:
+    types:
+      [
+        update-platformer-neo,
+        update-bouncing-box,
+        update-circularity,
+        update-first-website-hs,
+        update-portfolio-hs,
+        update-runtime-neo,
+      ]
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo A
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+          fetch-depth: 0
+
+      - name: Fetch changes and update
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        run: |
+          REPO_NAME="${{ github.event.client_payload.repo }}"
+          EVENT_TYPE="${{ github.event.action }}"
+
+          case $EVENT_TYPE in
+            update-platformer-neo)
+              TARGET_DIR="fsd-projects/platformer"
+              ;;
+            update-bouncing-box)
+              TARGET_DIR="fsd-projects/bouncing-box"
+              ;;
+            update-circularity)
+              TARGET_DIR="fsd-projects/circularity"
+              ;;
+            update-first-website-hs)
+              README_NAME="first-website.md"
+              BONUS_NAME="bonus-challenges-first-website.md"
+              ;;
+            update-portfolio-hs)
+              README_NAME="portfolio.md"
+              BONUS_NAME="bonus-challenges-portfolio.md"
+              ;;
+            update-runtime-neo)
+              TARGET_DIR="fsd-projects/runtime"
+              ;;
+          esac
+
+          if [ -n "$TARGET_DIR" ]; then
+            # Delete the target directory if it exists
+            rm -rf "$TARGET_DIR"
+            
+            # Clone the repository directly into the target directory
+            git clone --depth 1 https://x-access-token:${GITHUB_TOKEN}@github.com/OperationSpark/${REPO_NAME}.git "$TARGET_DIR"
+            
+            # Remove the .git directory to disconnect it from the source repo
+            rm -rf "$TARGET_DIR/.git"
+            rm -rf "$TARGET_DIR/.github"
+          fi
+
+          # Update README if it exists
+          if [ -n "$README_NAME" ]; then
+            curl -H "Authorization: token ${GITHUB_TOKEN}" \
+                 -H "Accept: application/vnd.github.v3.raw" \
+                 -o "project-instructions/$README_NAME" \
+                 -L "https://api.github.com/repos/OperationSpark/${REPO_NAME}/contents/README.md"
+          fi
+
+          # Update BONUS_CHALLENGES if it exists
+          if [ -n "$BONUS_NAME" ]; then
+            curl -H "Authorization: token ${GITHUB_TOKEN}" \
+                 -H "Accept: application/vnd.github.v3.raw" \
+                 -o "project-instructions/$BONUS_NAME" \
+                 -L "https://api.github.com/repos/OperationSpark/${REPO_NAME}/contents/BONUS_CHALLENGES.md"
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Update from ${{ github.event.client_payload.repo }}"
+          git push
