@@ -49,22 +49,22 @@ Show off your peacock feathers as you begin to spread your wings and take flight
 ### Step-by-Step Work Flow
 
 1. 📂 **Open the `portfolio.html` file** in your codespace to get started.
-   
-2. **Look for TODO sections** in the README:  
+2. **Look for TODO sections** in the README:
    - Each **TODO** has instructions for **what you need to do** next.
    - These steps will tell you **where to place new code** inside the existing tags.
 
 3. 🖥️ **Preview your site regularly using Live Server** to see how your changes affect the website.
 
-4. **Build gradually**:  
-   - Each TODO builds on the previous one, so **complete them in order**.  
+4. **Build gradually**:
+   - Each TODO builds on the previous one, so **complete them in order**.
    - Take your time to **double-check your code** before moving on to the next step.
 
 ---
 
 <br>
 
-### ✅ **Check Your Work!**  
+### ✅ **Check Your Work!**
+
 - **After each TODO**, double-check your code to ensure it matches the examples.
 - If you encounter issues, **preview your site** using Live Server to troubleshoot.
 
@@ -98,7 +98,7 @@ There are two ways to open your project with **Live Server**:
 
 #### **Option 2: Go Live Button in the Bottom Panel**
 
-1. **Look at the bottom-right corner** of your codespace.  
+1. **Look at the bottom-right corner** of your codespace.
 2. **Click the “Go Live” button** to launch Live Server.
 
 <div style="text-align: center;">
@@ -124,7 +124,8 @@ There are two ways to open your project with **Live Server**:
 
 <br>
 
-### ✅ **Check Your Work!**  
+### ✅ **Check Your Work!**
+
 - **After launching Live Server**, your browser should open a new tab with your site.
 - By default, Live Server will always load your home page. You can click the link to your Portfolio page to monitor your progress for this project.
 
@@ -142,11 +143,9 @@ There are two ways to open your project with **Live Server**:
 ### Step-by-Step Instructions
 
 1. 🔍 **Find the file tree**
-
    - Look to the **left side of your codespace** and find the list of project files and folders.
 
 2. **Open the `portfolio.html` file**
-
    - 📂 Inside the file tree, **click on `portfolio.html`** to open it.
 
 3. **Add the following boilerplate HTML** to your file to set up the basic structure:
@@ -160,9 +159,7 @@ There are two ways to open your project with **Live Server**:
 
      <body>
        <!-- All content goes here -->
-       <div id="all-contents">
-         
-       </div>
+       <div id="all-contents"></div>
      </body>
    </html>
    ```
@@ -247,29 +244,21 @@ Your updated `<head>` tag should look like this:
 ### Step-by-Step Instructions
 
 1. 🔍 **Locate the `<div id="all-contents">` element**
-
    - Find this part of the code:
 
      ```html
      <!-- All content goes here -->
-     <div id="all-contents">
-       
-     </div>
+     <div id="all-contents"></div>
      ```
 
 2. **Place the `<nav>` and `<main>` elements inside the `<div id="all-contents">` element**
-
    - Your code should now look like this:
 
      ```html
      <div id="all-contents">
-       <nav>
+       <nav></nav>
 
-       </nav>
-
-       <main>
-
-       </main>
+       <main></main>
      </div>
      ```
 
@@ -312,36 +301,27 @@ Your updated `<head>` tag should look like this:
 ### Step-by-Step Instructions
 
 1. 🔍 **Find the `<nav>` element**
-
    - Look for the following section in your code:
 
      ```html
-     <nav>
-     
-     </nav>
+     <nav></nav>
      ```
 
 2. **Add a title inside the `<nav>` element**
-
    - **Place an `<h1>` element** inside `<nav>`. Between the opening and closing `<h1>` tags, type the title of your website. Use the same text you used for your home page to stay consistent.
      ```html
      <h1>Your Name's Amazing Website</h1>
      ```
 
 3. **Create an unordered list for your navigation menu**
-
    - **Below the `<h1>` element**, add a `<ul id="nav-ul">` element:
 
      ```html
-     <ul id="nav-ul">
-
-     </ul>
+     <ul id="nav-ul"></ul>
      ```
 
 4. **Add two list items for the menu**
-
    - **Inside the `<ul>` element**, add the following two `<li>` elements:
-
      1. One to link to your home page
 
         ```html
@@ -359,6 +339,7 @@ Your updated `<head>` tag should look like this:
         ```
 
 After completing this TODO, your `<nav>` section should look like this:
+
 ```html
 <nav>
   <h1>Your Name's Amazing Website</h1>
@@ -411,22 +392,17 @@ After completing this TODO, your `<nav>` section should look like this:
 ### Step-by-Step Instructions
 
 1. 🔍 **Find the existing `<main>` element** in `portfolio.html`.
-
    - It should look like this:
 
      ```html
-     <main>
-
-     </main>
+     <main></main>
      ```
 
 2. **Create a new section** to hold the content:
-
    - Add a new `<div>` element inside the `<main>` element.
    - Add a `class="content"` attribute to the new `<div>`.
 
 3. **Add a header inside the new `<div>`** to label this section:
-
    - Place an `<h1>` tag inside the `<div class="content">`
    - Add the text `Portfolio` inside the new `<h1>`.
 
@@ -442,17 +418,15 @@ After completing this TODO, your `<nav>` section should look like this:
    - Below the closing `</ul>` tag, add the comment `<!-- ASD Projects will go here -->`.
 
 After completing these steps, your `<main>` section should look like this:
+
 ```html
 <main>
   <div class="content">
     <h1>Portfolio</h1>
     <h3>FSD Projects</h3>
-    <ul id="portfolio">
-
-    </ul>
+    <ul id="portfolio"></ul>
 
     <!-- ASD Projects will go here -->
-
   </div>
 </main>
 ```
@@ -498,16 +472,24 @@ After completing these steps, your `<main>` section should look like this:
 2. **Add these three `<li>` elements** with links to your projects into the `<ul>` element:
    ```html
    <li>
-     <a href="fsd-projects/platformer/">Platformer: A cannon-dodging adventure game for Halleb0t</a>
+     <a href="fsd-projects/platformer/"
+       >Platformer: A cannon-dodging adventure game for Halleb0t</a
+     >
    </li>
    <li>
-     <a href="fsd-projects/bouncing-box/">Bouncing Box: A fun introduction to web game development</a>
+     <a href="fsd-projects/bouncing-box/"
+       >Bouncing Box: A fun introduction to web game development</a
+     >
    </li>
    <li>
-     <a href="fsd-projects/circularity/">Circularity: A poetic motion experiment with circles</a>
+     <a href="fsd-projects/circularity/"
+       >Circularity: A poetic motion experiment with circles</a
+     >
    </li>
    <li>
-    <a href="fsd-projects/runtime/">Runtime : Fearless HalleBot goes on a side-scrolling adventure!</a>
+     <a href="fsd-projects/runtime/"
+       >Runtime : Fearless HalleBot goes on a side-scrolling adventure!</a
+     >
    </li>
    ```
 
@@ -557,7 +539,6 @@ After completing these steps, your `<main>` section should look like this:
 1. 🔍 **Find the `<head>` tag** inside `portfolio.html`.
 
 2. **Add a `<link>` tag inside the `<head>` element** to link the CSS file.
-
    - Note that the link tag does not require a closing tag
 
 3. **Add a `rel="stylesheet"` attribute and `href="style.css"` attribute** inside the `<link>` tag
@@ -570,6 +551,7 @@ After completing these steps, your `<main>` section should look like this:
      ```
 
 4. **Open the `style.css` file** and add the following styles to the bottom of the file:
+
    ```css
    /* Portfolio styles */
    .content h1 {
@@ -603,7 +585,10 @@ After completing these steps, your `<main>` section should look like this:
      background: #fff;
      border: 1px solid #e0e0e0;
      border-radius: 12px;
-     transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+     transition:
+       background 0.25s ease,
+       color 0.25s ease,
+       transform 0.25s ease;
    }
 
    #portfolio a:hover {
@@ -662,7 +647,6 @@ After completing these steps, your `<main>` section should look like this:
 ### Step-by-Step Instructions
 
 1. **Open the terminal in your codespace**
-
    - If the terminal isn’t visible, click the **Hamburger Menu > Terminal > New Terminal**.
 
 2. **Enter the following commands one by one** in the terminal, pressing enter after each command to run it:

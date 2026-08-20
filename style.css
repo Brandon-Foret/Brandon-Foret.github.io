@@ -2,8 +2,25 @@
   box-sizing: border-box;
 }
 
+/* =========================
+   PAGE / BODY
+   ========================= */
+
+html,
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background: #e77204;
   color: #ffdd00;
   font-family: "Comic Sans MS", Arial, sans-serif;
@@ -12,14 +29,115 @@ body {
   background-repeat: repeat;
 }
 
+/* =========================
+   PAGE CONTAINER
+   ========================= */
+
 #all-contents {
-  max-width: 1500px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 10px;
+  /*
+    Overall website size.
+  */
+  width: min(92%, 1200px);
+
+  height: min(90dvh, 800px);
+
+  /*
+    Body handles centering now.
+  */
+  margin: 0;
+
+  padding: 8px;
 
   background: #1a1a2e;
   border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+
+  /*
+    Keeps nav + main centered as one unit.
+  */
+  justify-content: center;
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+nav {
+  /*
+    Nav is 5% of the overall panel.
+  */
+  flex: 0 0 5%;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 1.5%;
+
+  background: #1a1a2e;
+
+  border-radius: 8px 8px 0 0;
+}
+
+nav h1 {
+  margin: 0;
+
+  font-size: clamp(0.65rem, 0.7vw, 0.8rem);
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.2em;
+
+  color: #e77204;
+}
+
+/* =========================
+   NAV LINKS
+   ========================= */
+
+#nav-ul {
+  list-style: none;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  margin: 0;
+  padding: 0;
+}
+
+.nav-li a {
+  display: block;
+
+  color: #a8b2d8;
+
+  text-decoration: none;
+
+  font-size: clamp(0.7rem, 0.75vw, 0.85rem);
+
+  font-weight: 500;
+
+  padding: 4px 9px;
+
+  border-radius: 6px;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.nav-li a:hover {
+  background: #e77204;
+  color: #120052;
 }
 
 /* =========================
@@ -27,87 +145,59 @@ body {
    ========================= */
 
 main {
+  /*
+    Main takes the remaining 95%.
+  */
+  flex: 1 1 95%;
+
+  width: 100%;
+
   display: flex;
+
   align-items: center;
+  justify-content: center;
 
-  min-height: calc(100vh - 100px);
-
-  margin-bottom: 0;
-  padding: 16px 50px;
+  padding: 2% 3%;
 
   background: #e77204;
 
-  border: none;
   border-radius: 0 0 8px 8px;
+
+  min-height: 0;
+
+  overflow: hidden;
 }
 
+/* =========================
+   CONTENT
+   ========================= */
+
 .content {
-  display: ruby-text;
+  width: min(100%, 600px);
+
+  display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
+  justify-content: center;
+
   gap: 5px;
 }
 
 .content > p {
-  color: #ffdd00;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  line-height: 1.4;
-}
-
-/* =========================
-   INTERESTS
-   ========================= */
-
-#interests {
-  margin-top: -25px;
-  width: 100%;
-}
-
-#interests h3 {
-  margin: 0 0 12px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #ffd500;
-}
-
-#interests ul {
-  list-style: none;
   margin: 0;
-  padding: 0;
 
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
 
-#interests li {
-  color: #000000;
-  font-size: 1rem;
-  font-weight: 600;
+  color: #ffdd00;
 
-  padding: 10px 20px;
+  text-transform: uppercase;
 
-  background: #ff6f00;
-  border: 2.75px solid #120052;
-  border-radius: 100px;
+  letter-spacing: 0.15em;
 
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease;
-
-  cursor: default;
-}
-
-#interests li:hover {
-  background: #120052;
-  color: #fff;
-  border-color: #000;
-  transform: translateY(-2px);
+  line-height: 1.4;
 }
 
 /* =========================
@@ -115,11 +205,17 @@ main {
    ========================= */
 
 .sidebar-img {
-  width: 100%;
-  max-width: 760px;
+  /*
+    Back to the larger/original size.
+  */
+  width: clamp(180px, 28vw, 360px);
+
+  height: auto;
 
   aspect-ratio: 3 / 4;
+
   object-fit: cover;
+
   display: block;
 
   border-radius: 16px;
@@ -132,63 +228,186 @@ main {
 }
 
 /* =========================
-   NAVIGATION
-
+   INTERESTS
    ========================= */
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
+#interests {
+  margin-top: 0;
 
-  padding: 16px 24px;
-
-  background: #1a1a2e;
-  border: none;
-  border-radius: 8px 8px 0 0;
+  width: 100%;
 }
 
-nav h1 {
-  margin: 0;
+#interests h3 {
+  margin: 0 0 10px;
 
-  font-size: 0.8rem;
+  font-size: clamp(0.65rem, 0.8vw, 0.75rem);
+
   font-weight: 700;
 
   text-transform: uppercase;
+
   letter-spacing: 0.2em;
-
-  color: #e77204;
-}
-
-#nav-ul {
-  list-style: none;
-
-  display: flex;
-  gap: 8px;
 
   margin: 0;
   padding: 0;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  color: #ffd500;
 }
 
-.nav-li a {
-  color: #a8b2d8;
+/* =========================
+   INTEREST BUTTONS
+   ========================= */
 
-  text-decoration: none;
+#interests ul {
+  list-style: none;
 
-  font-size: 0.85rem;
-  font-weight: 500;
+  margin: 0;
+  padding: 0;
 
-  padding: 6px 14px;
+  display: flex;
 
-  border-radius: 8px;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 6px;
+}
+
+#interests li {
+  color: #000000;
+
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
+
+  font-weight: 600;
+
+  padding: 7px 14px;
+
+  background: #ff6f00;
+
+  border: 2px solid #120052;
+
+  border-radius: 100px;
 
   transition:
     background 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease,
+    transform 0.25s ease;
+
+  cursor: default;
 }
 
-.nav-li a:hover {
-  background: #e77204;
-  color: #120052;
+#interests li:hover {
+  background: #120052;
+
+  color: #fff;
+
+  border-color: #000;
+
+  transform: translateY(-2px);
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 700px) {
+  #all-contents {
+    width: 96%;
+
+    height: 92dvh;
+
+    padding: 6px;
+
+    border-radius: 10px;
+  }
+
+  nav {
+    padding: 0 2%;
+  }
+
+  nav h1 {
+    font-size: 0.65rem;
+  }
+
+  #nav-ul {
+    gap: 2px;
+  }
+
+  .nav-li a {
+    font-size: 0.7rem;
+
+    padding: 4px 7px;
+  }
+
+  main {
+    padding: 2%;
+  }
+
+  .content {
+    width: min(100%, 550px);
+  }
+
+  .sidebar-img {
+    width: clamp(160px, 32vw, 280px);
+  }
+}
+
+/* =========================
+   SMALL PHONES
+   ========================= */
+
+@media (max-width: 450px) {
+  #all-contents {
+    width: 98%;
+
+    height: 94dvh;
+
+    padding: 4px;
+  }
+
+  nav h1 {
+    font-size: 0.55rem;
+  }
+
+  .nav-li a {
+    font-size: 0.65rem;
+
+    padding: 3px 5px;
+  }
+
+  main {
+    padding: 2%;
+  }
+
+  .sidebar-img {
+    width: min(55vw, 240px);
+  }
+
+  .content {
+    gap: 4px;
+  }
+
+  #interests li {
+    padding: 6px 12px;
+  }
+}
+
+/* =========================
+   SHORT SCREENS
+   ========================= */
+
+@media (max-height: 600px) {
+  #all-contents {
+    height: 94dvh;
+  }
+
+  .sidebar-img {
+    width: clamp(140px, 22vw, 260px);
+  }
 }
