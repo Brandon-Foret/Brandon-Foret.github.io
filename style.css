@@ -2,14 +2,15 @@
   box-sizing: border-box;
 }
 
-/* =========================
+/* =========================================================
    PAGE / BODY
-   ========================= */
+   ========================================================= */
 
 html,
 body {
   margin: 0;
   padding: 0;
+
   width: 100%;
   min-height: 100%;
 }
@@ -23,51 +24,41 @@ body {
 
   background: #e77204;
   color: #ffdd00;
+
   font-family: "Comic Sans MS", Arial, sans-serif;
 
   background-image: url("checkerbg.jpg");
   background-repeat: repeat;
 }
 
-/* =========================
+/* =========================================================
    PAGE CONTAINER
-   ========================= */
+   ========================================================= */
 
 #all-contents {
-  /*
-    Overall website size.
-  */
   width: min(92%, 1200px);
 
   height: min(90dvh, 800px);
 
-  /*
-    Body handles centering now.
-  */
   margin: 0;
 
   padding: 8px;
 
   background: #1a1a2e;
+
   border-radius: 15px;
 
   display: flex;
   flex-direction: column;
 
-  /*
-    Keeps nav + main centered as one unit.
-  */
   justify-content: center;
 }
 
-/* =========================
+/* =========================================================
    NAVIGATION
-   ========================= */
+   ========================================================= */
 
 nav {
-  /*
-    Nav is 5% of the overall panel.
-  */
   flex: 0 0 5%;
 
   width: 100%;
@@ -98,9 +89,9 @@ nav h1 {
   color: #e77204;
 }
 
-/* =========================
+/* =========================================================
    NAV LINKS
-   ========================= */
+   ========================================================= */
 
 #nav-ul {
   list-style: none;
@@ -122,6 +113,8 @@ nav h1 {
 
   text-decoration: none;
 
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
   font-size: clamp(0.7rem, 0.75vw, 0.85rem);
 
   font-weight: 500;
@@ -135,19 +128,21 @@ nav h1 {
     color 0.25s ease;
 }
 
+.nav-li a:visited {
+  color: #a8b2d8;
+}
+
 .nav-li a:hover {
   background: #e77204;
+
   color: #120052;
 }
 
-/* =========================
+/* =========================================================
    MAIN
-   ========================= */
+   ========================================================= */
 
 main {
-  /*
-    Main takes the remaining 95%.
-  */
   flex: 1 1 95%;
 
   width: 100%;
@@ -168,9 +163,9 @@ main {
   overflow: hidden;
 }
 
-/* =========================
+/* =========================================================
    CONTENT
-   ========================= */
+   ========================================================= */
 
 .content {
   width: min(100%, 600px);
@@ -200,14 +195,11 @@ main {
   line-height: 1.4;
 }
 
-/* =========================
+/* =========================================================
    CHARACTER IMAGE
-   ========================= */
+   ========================================================= */
 
 .sidebar-img {
-  /*
-    Back to the larger/original size.
-  */
   width: clamp(180px, 28vw, 360px);
 
   height: auto;
@@ -227,9 +219,9 @@ main {
   transform: translateY(-4px);
 }
 
-/* =========================
+/* =========================================================
    INTERESTS
-   ========================= */
+   ========================================================= */
 
 #interests {
   margin-top: 0;
@@ -248,7 +240,6 @@ main {
 
   letter-spacing: 0.2em;
 
-  margin: 0;
   padding: 0;
 
   display: flex;
@@ -260,9 +251,9 @@ main {
   color: #ffd500;
 }
 
-/* =========================
+/* =========================================================
    INTEREST BUTTONS
-   ========================= */
+   ========================================================= */
 
 #interests ul {
   list-style: none;
@@ -312,9 +303,459 @@ main {
   transform: translateY(-2px);
 }
 
-/* =========================
+/* =========================================================
+   LINKS PAGE
+   ========================================================= */
+
+.links-main {
+  background: #e77204;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+/* =========================================================
+   LINKS CONTENT
+   ========================================================= */
+
+.links-content {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+}
+
+/* =========================================================
+   LINKS TITLE
+   ========================================================= */
+
+.links-content h2 {
+  margin: 0;
+
+  color: #ffdd00;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  font-size: clamp(3rem, 7vw, 5rem);
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-align: center;
+}
+
+/* =========================================================
+   LINK BUTTON CONTAINER
+   ========================================================= */
+
+.link-buttons {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 6px;
+}
+
+/* =========================================================
+   LINK BUTTONS
+   ========================================================= */
+
+.link-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 14px;
+
+  background: #ff6f00;
+
+  border: 2px solid #120052;
+
+  border-radius: 100px;
+
+  color: #000000;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* =========================================================
+   VISITED LINKS
+   ========================================================= */
+
+.link-button:visited {
+  color: #000000;
+
+  text-decoration: none;
+}
+
+/* =========================================================
+   LINK BUTTON HOVER
+   ========================================================= */
+
+.link-button:hover {
+  background: #120052;
+
+  color: #ffffff;
+
+  border-color: #000000;
+
+  transform: translateY(-2px);
+
+  text-decoration: none;
+}
+
+/* =========================================================
+   LINK BUTTON ACTIVE
+   ========================================================= */
+
+.link-button:active {
+  background: #120052;
+
+  color: #ffffff;
+
+  transform: translateY(0);
+}
+
+/* =========================================================
+   LINK BUTTON FOCUS
+   ========================================================= */
+
+.link-button:focus {
+  color: #000000;
+
+  text-decoration: none;
+
+  outline: 2px solid #ffdd00;
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   BLOG PAGE
+   ========================================================= */
+
+.blog-main {
+  align-items: flex-start;
+
+  justify-content: center;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 45px 6% 70px;
+
+  background: #e77204;
+
+  scrollbar-color: #120052 #e77204;
+}
+
+/* =========================================================
+   BLOG CONTAINER
+   ========================================================= */
+
+.blog-container {
+  width: min(100%, 900px);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: stretch;
+}
+
+/* =========================================================
+   BLOG HEADER
+   ========================================================= */
+
+.blog-header {
+  margin-bottom: 45px;
+
+  padding-bottom: 30px;
+
+  border-bottom: 3px solid #120052;
+}
+
+.blog-header h2 {
+  margin: 0 0 12px;
+
+  color: #120052;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  font-size: clamp(2rem, 5vw, 4rem);
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+  letter-spacing: -0.04em;
+}
+
+.blog-header p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: #120052;
+
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+
+  line-height: 1.6;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   POSTS
+   ========================================================= */
+
+.blog-posts {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+/* =========================================================
+   INDIVIDUAL POST
+   ========================================================= */
+
+.blog-post {
+  padding: 0 0 42px;
+
+  margin-bottom: 42px;
+
+  border-bottom: 2px solid rgba(18, 0, 82, 0.45);
+}
+
+.blog-post:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   POST DATE
+   ========================================================= */
+
+.post-date {
+  margin-bottom: 10px;
+
+  color: #120052;
+
+  font-size: 0.72rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   POST TITLE
+   ========================================================= */
+
+.blog-post h3 {
+  margin: 0 0 7px;
+
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+
+  line-height: 1.05;
+
+  font-weight: 900;
+
+  letter-spacing: -0.02em;
+}
+
+.blog-post h3 a {
+  color: #120052;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.blog-post h3 a:visited {
+  color: #120052;
+}
+
+.blog-post h3 a:hover {
+  color: #ffdd00;
+
+  text-shadow:
+    2px 2px 0 #120052,
+    -1px -1px 0 #120052;
+}
+
+/* =========================================================
+   READ TIME
+   ========================================================= */
+
+.post-info {
+  margin-bottom: 18px;
+
+  color: #3b235f;
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+}
+
+/* =========================================================
+   BLOG TEXT
+   ========================================================= */
+
+.blog-post p {
+  max-width: 760px;
+
+  margin: 0 0 18px;
+
+  color: #120052;
+
+  font-family: Arial, sans-serif;
+
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+
+  font-weight: 600;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   EXPANDABLE BLOG TEXT
+   ========================================================= */
+
+.more-text {
+  display: none;
+}
+
+.blog-post.expanded .more-text {
+  display: block;
+}
+
+/* =========================================================
+   READ MORE
+   ========================================================= */
+
+.read-more {
+  display: inline-block;
+
+  color: #120052;
+
+  font-size: 0.8rem;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+  padding: 7px 12px;
+
+  border: 2px solid #120052;
+
+  border-radius: 5px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.read-more:visited {
+  color: #120052;
+}
+
+.read-more:hover {
+  background: #120052;
+
+  color: #ffdd00;
+
+  transform: translateX(4px);
+}
+
+/* Button appearance when expanded */
+
+.blog-post.expanded .read-more {
+  background: #120052;
+
+  color: #ffdd00;
+}
+
+.blog-post.expanded .read-more:hover {
+  background: #120052;
+
+  color: #ffdd00;
+
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   BLOG SCROLLBAR
+   ========================================================= */
+
+.blog-main::-webkit-scrollbar {
+  width: 10px;
+}
+
+.blog-main::-webkit-scrollbar-track {
+  background: #e77204;
+}
+
+.blog-main::-webkit-scrollbar-thumb {
+  background: #120052;
+
+  border-radius: 10px;
+
+  border: 2px solid #e77204;
+}
+
+/* =========================================================
    TABLET
-   ========================= */
+   ========================================================= */
 
 @media (max-width: 700px) {
   #all-contents {
@@ -356,11 +797,41 @@ main {
   .sidebar-img {
     width: clamp(160px, 32vw, 280px);
   }
+
+  .links-content h2 {
+    font-size: clamp(2.8rem, 9vw, 4rem);
+  }
+
+  .link-buttons {
+    gap: 6px;
+  }
+
+  .link-button {
+    font-size: 0.7rem;
+
+    padding: 6px 12px;
+  }
+
+  .blog-main {
+    padding: 30px 5% 50px;
+  }
+
+  .blog-header {
+    margin-bottom: 35px;
+
+    padding-bottom: 25px;
+  }
+
+  .blog-post {
+    padding-bottom: 32px;
+
+    margin-bottom: 32px;
+  }
 }
 
-/* =========================
+/* =========================================================
    SMALL PHONES
-   ========================= */
+   ========================================================= */
 
 @media (max-width: 450px) {
   #all-contents {
@@ -396,11 +867,55 @@ main {
   #interests li {
     padding: 6px 12px;
   }
+
+  .links-content {
+    gap: 14px;
+  }
+
+  .links-content h2 {
+    font-size: 3rem;
+  }
+
+  .link-buttons {
+    gap: 5px;
+  }
+
+  .link-button {
+    font-size: 0.65rem;
+
+    padding: 6px 10px;
+  }
+
+  .blog-main {
+    padding: 25px 5% 40px;
+  }
+
+  .blog-header h2 {
+    font-size: 2rem;
+  }
+
+  .blog-header p {
+    font-size: 0.78rem;
+  }
+
+  .blog-post h3 {
+    font-size: 1.45rem;
+  }
+
+  .blog-post p {
+    font-size: 0.85rem;
+
+    line-height: 1.6;
+  }
+
+  .post-date {
+    font-size: 0.62rem;
+  }
 }
 
-/* =========================
+/* =========================================================
    SHORT SCREENS
-   ========================= */
+   ========================================================= */
 
 @media (max-height: 600px) {
   #all-contents {

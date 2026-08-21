@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Brandon's Website! - Blog</title>
+  <link rel="icon" href="icon.JPG" type="image/x-icon">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div id="all-contents">
+
+    <nav>
+      <h1>Brandon's Website</h1>
+
+      <ul id="nav-ul">
+        <li class="nav-li">
+          <a href="index.html">Home</a>
+        </li>
+
+        <li class="nav-li">
+          <a href="portfolio.html">Portfolio</a>
+        </li>
+
+        <li class="nav-li">
+          <a href="links.html">Links</a>
+        </li>
+
+        <li class="nav-li">
+          <a href="blog.html">Blog</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="blog-main">
+
+      <div class="blog-container">
+
+        <article class="blog-post" id="firstpost">
+
+          <div class="post-date">
+            AUGUST 21, 2026 • 9:22AM CST
+          </div>
+
+          <h3>
+            <a href="#firstpost">
+              Welcome To My Blog!
+            </a>
+          </h3>
+
+          <div class="post-info">
+            3 minute read
+          </div>
+
+          <p>
+            Hai everyone! Welcome to my little corner of the internet.
+            I will use this blog to post about things I'm working
+            on, stuff I find interesting, and whatever else I decide
+            to put here.
+          </p>
+
+          <div class="more-text">
+
+            <p>
+              Heres The Changelog Of What I Did For The Website
+            </p>
+
+            <p>
+              Added Blog (Hai Hello I See You)
+            </p>
+
+            <p>
+              Changed Links Too Be More Like The Rest Of The Website And Finally Stylizized The Portfolio
+            </p>
+
+          </div>
+
+          <a class="read-more" href="#firstpost">
+            Read more →
+          </a>
+
+        </article>
+
+        <article class="blog-post" id="test">
+
+          <div class="post-date">
+            JANUARY 1, 1970 • 12:00AM CST
+          </div>
+
+          <h3>
+            <a href="#test">
+              This Is A Test Too See If The Tagging System Works, Might Keep It Cuz Funny
+            </a>
+          </h3>
+
+          <div class="post-info">
+            TEST
+          </div>
+
+          <p>
+            Test Post Thats Used For Testing
+          </p>
+
+          <div class="more-text">
+
+            <p>
+              Testing The Test Test Testing Yes Test Test Testing Quiz Or Somthing
+            </p>
+
+          </div>
+
+          <a class="read-more" href="#test">
+            Read more →
+          </a>
+
+        </article>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script>
+    document.querySelectorAll(".read-more").forEach(function (button) {
+
+      button.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        const post = button.closest(".blog-post");
+
+        const expanded = post.classList.toggle("expanded");
+
+        if (expanded) {
+          button.textContent = "Read less ↑";
+        } else {
+          button.textContent = "Read more →";
+        }
+
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
