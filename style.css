@@ -139,6 +139,23 @@ nav h1 {
 }
 
 /* =========================================================
+   DRAGGABLE WINDOW
+   ========================================================= */
+
+#all-contents {
+  position: relative;
+}
+
+#all-contents nav {
+  cursor: grab;
+  user-select: none;
+}
+
+#all-contents nav:active {
+  cursor: grabbing;
+}
+
+/* =========================================================
    MAIN
    ========================================================= */
 
@@ -716,8 +733,6 @@ main {
 
   transform: translateX(4px);
 }
-
-/* Button appearance when expanded */
 
 .blog-post.expanded .read-more {
   background: #120052;
