@@ -94,7 +94,40 @@
               Okay bai lil goobers, stay hydrated its really hot!
             </p>
 
-            <p style="color: red;">
+            <!-- The CSS Styles (Put this inside your <head> tag or just above your text) -->
+            <style>
+              .shake-text {
+                display: inline-block;
+                /* Forces the browser to allow layout changes */
+                animation: shake 0.5s infinite;
+                /* Runs the shake continuously */
+              }
+
+              @keyframes shake {
+
+                0%,
+                100% {
+                  transform: translateX(0);
+                }
+
+                10%,
+                30%,
+                50%,
+                70%,
+                90% {
+                  transform: translateX(-5px);
+                }
+
+                20%,
+                40%,
+                60%,
+                80% {
+                  transform: translateX(5px);
+                }
+              }
+            </style>
+
+            <p class="shake-text" style="color: red; font-weight: bold;">
               ALSO WEAR YOUR SEATBELT, AND WATCH OUT FOR CONVER BELTS!
             </p>
 

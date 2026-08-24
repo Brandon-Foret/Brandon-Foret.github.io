@@ -941,3 +941,30 @@ main {
     width: clamp(140px, 22vw, 260px);
   }
 }
+
+.violent-shake {
+  display: inline-flex;
+  align-items: center;
+  animation: jitter 0.15s infinite;
+}
+
+@keyframes jitter {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(-2px, 1px) rotate(-1deg);
+  }
+  40% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  60% {
+    transform: translate(2px, 0px) rotate(0deg);
+  }
+  80% {
+    transform: translate(1px, 2px) rotate(1deg);
+  }
+  100% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+}
