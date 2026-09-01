@@ -72,7 +72,9 @@
       // TODO 2 - Variable declarations
 
 
+      var points = 0
       var positionX = 0.0
+      var objectSpeedThing = 1.0
 
 
       /**
@@ -81,8 +83,18 @@
        * If the box drifts off the screen, turn it around!
        */
       function update() {
-        positionX += 35
+        if (positionX > boardWidth && objectSpeedThing !== -1.0) {
+          objectSpeedThing = -1.0
+          points++
+        } else if (positionX < 0 && objectSpeedThing !== 1.0) {
+          objectSpeedThing = 1.0
+          points++
+        }
+
+        positionX += 35 * objectSpeedThing
+
         moveBoxTo(positionX)
+        changeBoxText(points)
       }
 
       /**
