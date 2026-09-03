@@ -2,50 +2,83 @@
 <html>
 
 <head>
-  <title>Brandon's Website! - Home</title>
+  <title>Brandon's Desktop</title>
+
   <link rel="icon" href="icon.JPG" type="image/x-icon">
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id="all-contents">
-    <nav>
-      <h1>Brandon's Website</h1>
-      <ul id="nav-ul">
-        <li class="nav-li"><a href="index.html">Home</a></li>
-        <li class="nav-li"><a href="portfolio.html">Portfolio</a></li>
-        <li class="nav-li"><a href="links.html">Links</a></li>
-        <li class="nav-li"><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
 
-    <main>
-      <div class="sidebar">
-        <img class="sidebar-img" src="OCRender.png" alt="My image" />
+  <div id="desktop">
+
+    <!-- ===================================================
+         DESKTOP APPS
+         =================================================== -->
+
+    <div id="desktop-icons">
+
+      <button class="desktop-app" data-url="home.html" data-title="Home">
+        <div class="app-icon">🏠</div>
+        <div class="app-name">Home</div>
+      </button>
+
+
+      <button class="desktop-app" data-url="blog.html" data-title="Blog">
+        <div class="app-icon">📝</div>
+        <div class="app-name">Blog</div>
+      </button>
+
+
+      <button class="desktop-app" data-url="links.html" data-title="Links">
+        <div class="app-icon">🔗</div>
+        <div class="app-name">Links</div>
+      </button>
+
+    </div>
+
+    <div id="window-area"></div>
+
+    <div id="jumper">
+      <img src="lilhappijumpy.png" alt="Bouncy image">
+    </div>
+
+    <div id="start-menu">
+
+      <div class="start-title">
+        Kitty OS
       </div>
 
-      <div class="content">
-        <h1> Hai I'm Brandon! </h1>
+      <button class="start-item" data-url="home.html" data-title="Home">
+        Home
+      </button>
 
-        <div id="interests">
-          <h3 style="margin: 0 0 25px 0;">Interests</h3>
-          <ul>
-            <li>Software</li>
-            <li>Game Development</li>
-            <li>Augmented/Virtual Reality</li>
-            <li>Modeling</li>
-            <li>Content Creation</li>
-          </ul>
-        </div>
-      </div>
-    </main>
+      <button class="start-item" data-url="blog.html" data-title="Blog">
+        Blog
+      </button>
+
+      <button class="start-item" data-url="links.html" data-title="Links">
+        Links
+      </button>
+
+    </div>
+
+    <div id="taskbar">
+
+      <button id="start-button">
+        🍊
+      </button>
+
+      <div id="taskbar-windows"></div>
+
+    </div>
+
   </div>
 
-  <div id="jumper">
-    <img src="lilhappijumpy.png" alt="Bouncy image">
-  </div>
 
   <script src="script.js"></script>
+
 </body>
 
 </html>

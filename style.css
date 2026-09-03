@@ -3,6 +3,23 @@
 }
 
 /* =========================================================
+   IFRAME
+   ========================================================= */
+
+#main-frame {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  border: none;
+  display: block;
+
+  background: #e77204;
+}
+
+/* =========================================================
    PAGE / BODY
    ========================================================= */
 
@@ -32,16 +49,14 @@ body {
 }
 
 /* =========================================================
-   PAGE CONTAINER
+   MAIN WINDOW
    ========================================================= */
 
 #all-contents {
   width: min(92%, 1200px);
-
   height: min(90dvh, 800px);
 
   margin: 0;
-
   padding: 8px;
 
   background: #1a1a2e;
@@ -51,7 +66,9 @@ body {
   display: flex;
   flex-direction: column;
 
-  justify-content: center;
+  overflow: hidden;
+
+  position: relative;
 }
 
 /* =========================================================
@@ -97,7 +114,6 @@ nav h1 {
   list-style: none;
 
   display: flex;
-
   align-items: center;
 
   gap: 4px;
@@ -142,10 +158,6 @@ nav h1 {
    DRAGGABLE WINDOW
    ========================================================= */
 
-#all-contents {
-  position: relative;
-}
-
 #all-contents nav {
   cursor: grab;
   user-select: none;
@@ -156,13 +168,15 @@ nav h1 {
 }
 
 /* =========================================================
-   MAIN
+   NORMAL MAIN
    ========================================================= */
 
 main {
-  flex: 1 1 95%;
+  flex: 1 1 auto;
 
   width: 100%;
+
+  min-height: 0;
 
   display: flex;
 
@@ -175,13 +189,11 @@ main {
 
   border-radius: 0 0 8px 8px;
 
-  min-height: 0;
-
   overflow: hidden;
 }
 
 /* =========================================================
-   CONTENT
+   NORMAL CONTENT
    ========================================================= */
 
 .content {
@@ -192,7 +204,6 @@ main {
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 5px;
@@ -223,7 +234,7 @@ main {
 
   aspect-ratio: 3 / 4;
 
-  object-fit: cover;
+  object-fit: contain;
 
   display: block;
 
@@ -267,10 +278,6 @@ main {
 
   color: #ffd500;
 }
-
-/* =========================================================
-   INTEREST BUTTONS
-   ========================================================= */
 
 #interests ul {
   list-style: none;
@@ -335,10 +342,6 @@ main {
   text-align: center;
 }
 
-/* =========================================================
-   LINKS CONTENT
-   ========================================================= */
-
 .links-content {
   width: 100%;
 
@@ -347,15 +350,10 @@ main {
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 18px;
 }
-
-/* =========================================================
-   LINKS TITLE
-   ========================================================= */
 
 .links-content h2 {
   margin: 0;
@@ -373,10 +371,6 @@ main {
   text-align: center;
 }
 
-/* =========================================================
-   LINK BUTTON CONTAINER
-   ========================================================= */
-
 .link-buttons {
   display: flex;
 
@@ -387,10 +381,6 @@ main {
 
   gap: 6px;
 }
-
-/* =========================================================
-   LINK BUTTONS
-   ========================================================= */
 
 .link-button {
   display: inline-flex;
@@ -426,19 +416,10 @@ main {
     transform 0.25s ease;
 }
 
-/* =========================================================
-   VISITED LINKS
-   ========================================================= */
-
 .link-button:visited {
   color: #000000;
-
   text-decoration: none;
 }
-
-/* =========================================================
-   LINK BUTTON HOVER
-   ========================================================= */
 
 .link-button:hover {
   background: #120052;
@@ -452,10 +433,6 @@ main {
   text-decoration: none;
 }
 
-/* =========================================================
-   LINK BUTTON ACTIVE
-   ========================================================= */
-
 .link-button:active {
   background: #120052;
 
@@ -463,10 +440,6 @@ main {
 
   transform: translateY(0);
 }
-
-/* =========================================================
-   LINK BUTTON FOCUS
-   ========================================================= */
 
 .link-button:focus {
   color: #000000;
@@ -497,10 +470,6 @@ main {
   scrollbar-color: #120052 #e77204;
 }
 
-/* =========================================================
-   BLOG CONTAINER
-   ========================================================= */
-
 .blog-container {
   width: min(100%, 900px);
 
@@ -512,10 +481,6 @@ main {
 
   align-items: stretch;
 }
-
-/* =========================================================
-   BLOG HEADER
-   ========================================================= */
 
 .blog-header {
   margin-bottom: 45px;
@@ -557,10 +522,6 @@ main {
   font-weight: 600;
 }
 
-/* =========================================================
-   POSTS
-   ========================================================= */
-
 .blog-posts {
   width: 100%;
 
@@ -568,10 +529,6 @@ main {
 
   flex-direction: column;
 }
-
-/* =========================================================
-   INDIVIDUAL POST
-   ========================================================= */
 
 .blog-post {
   padding: 0 0 42px;
@@ -584,10 +541,6 @@ main {
 .blog-post:last-child {
   margin-bottom: 0;
 }
-
-/* =========================================================
-   POST DATE
-   ========================================================= */
 
 .post-date {
   margin-bottom: 10px;
@@ -602,10 +555,6 @@ main {
 
   text-transform: uppercase;
 }
-
-/* =========================================================
-   POST TITLE
-   ========================================================= */
 
 .blog-post h3 {
   margin: 0 0 7px;
@@ -641,10 +590,6 @@ main {
     -1px -1px 0 #120052;
 }
 
-/* =========================================================
-   READ TIME
-   ========================================================= */
-
 .post-info {
   margin-bottom: 18px;
 
@@ -658,10 +603,6 @@ main {
 
   letter-spacing: 0.12em;
 }
-
-/* =========================================================
-   BLOG TEXT
-   ========================================================= */
 
 .blog-post p {
   max-width: 760px;
@@ -679,10 +620,6 @@ main {
   line-height: 1.7;
 }
 
-/* =========================================================
-   EXPANDABLE BLOG TEXT
-   ========================================================= */
-
 .more-text {
   display: none;
 }
@@ -690,10 +627,6 @@ main {
 .blog-post.expanded .more-text {
   display: block;
 }
-
-/* =========================================================
-   READ MORE
-   ========================================================= */
 
 .read-more {
   display: inline-block;
@@ -740,14 +673,6 @@ main {
   color: #ffdd00;
 }
 
-.blog-post.expanded .read-more:hover {
-  background: #120052;
-
-  color: #ffdd00;
-
-  transform: translateX(4px);
-}
-
 /* =========================================================
    BLOG SCROLLBAR
    ========================================================= */
@@ -769,13 +694,37 @@ main {
 }
 
 /* =========================================================
+   BOUNCY CHARACTER
+   ========================================================= */
+
+#jumper {
+  position: fixed;
+
+  width: 100px;
+  height: 100px;
+
+  bottom: 0;
+  left: 0;
+
+  z-index: 67;
+
+  pointer-events: none;
+}
+
+#jumper img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+/* =========================================================
    TABLET
    ========================================================= */
 
 @media (max-width: 700px) {
   #all-contents {
     width: 96%;
-
     height: 92dvh;
 
     padding: 6px;
@@ -805,20 +754,16 @@ main {
     padding: 2%;
   }
 
+  .sidebar-img {
+    width: clamp(180px, 32vw, 280px);
+  }
+
   .content {
     width: min(100%, 550px);
   }
 
-  .sidebar-img {
-    width: clamp(160px, 32vw, 280px);
-  }
-
   .links-content h2 {
     font-size: clamp(2.8rem, 9vw, 4rem);
-  }
-
-  .link-buttons {
-    gap: 6px;
   }
 
   .link-button {
@@ -851,7 +796,6 @@ main {
 @media (max-width: 450px) {
   #all-contents {
     width: 98%;
-
     height: 94dvh;
 
     padding: 4px;
@@ -872,7 +816,7 @@ main {
   }
 
   .sidebar-img {
-    width: min(55vw, 240px);
+    width: min(60vw, 260px);
   }
 
   .content {
@@ -889,10 +833,6 @@ main {
 
   .links-content h2 {
     font-size: 3rem;
-  }
-
-  .link-buttons {
-    gap: 5px;
   }
 
   .link-button {
@@ -942,19 +882,805 @@ main {
   }
 }
 
-#jumper {
-  position: fixed;
-  width: 100px;
-  height: 100px;
-  bottom: 0;
-  left: 0;
+/* =========================================================
+   =========================================================
+   IFRAME HOME PAGE
+   =========================================================
+   ========================================================= */
 
-  z-index: 0;
+html:has(body.iframe-page),
+body.iframe-page {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.iframe-page {
+  min-height: 100% !important;
+  display: block !important;
+  background: #e77204 !important;
+  background-image: none !important;
+  overflow: hidden !important;
+}
+
+/* =========================================================
+   IFRAME HOME MAIN
+   ========================================================= */
+
+body.iframe-page main {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 7% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7% !important;
+  background: #e77204 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+/* =========================================================
+   IFRAME HOME CHARACTER
+   ========================================================= */
+
+body.iframe-page .sidebar {
+  width: 34% !important;
+  height: 100% !important;
+  flex: 0 0 34% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.iframe-page .sidebar-img {
+  width: 100% !important;
+  max-width: 410px !important;
+  height: auto !important;
+  aspect-ratio: 3 / 4 !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 16px !important;
+}
+
+/* =========================================================
+   IFRAME HOME CONTENT
+   ========================================================= */
+
+body.iframe-page .content {
+  width: 45% !important;
+  max-width: 520px !important;
+  flex: 0 1 45% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 6px !important;
+}
+
+/* =========================================================
+   IFRAME HOME TITLE
+   ========================================================= */
+
+body.iframe-page .content h1 {
+  margin: 0 0 10px !important;
+  font-size: clamp(1.9rem, 3.8vw, 2.7rem) !important;
+  line-height: 1.1 !important;
+  color: #ffdd00 !important;
+  text-align: center !important;
+}
+
+/* =========================================================
+   IFRAME HOME INTERESTS
+   ========================================================= */
+
+body.iframe-page #interests {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+body.iframe-page #interests h3 {
+  margin: 0 0 10px !important;
+  font-size: clamp(0.65rem, 0.85vw, 0.8rem) !important;
+}
+
+body.iframe-page #interests ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 7px !important;
+}
+
+body.iframe-page #interests li {
+  font-size: clamp(0.75rem, 0.95vw, 0.95rem) !important;
+  padding: 7px 14px !important;
+}
+
+/* =========================================================
+   TABLET IFRAME HOME
+   ========================================================= */
+
+@media (max-width: 700px) {
+  body.iframe-page main {
+    padding: 0 5% !important;
+    gap: 4% !important;
+  }
+
+  body.iframe-page .sidebar {
+    width: 38% !important;
+    flex-basis: 38% !important;
+  }
+
+  body.iframe-page .sidebar-img {
+    max-width: 330px !important;
+  }
+
+  body.iframe-page .content {
+    width: 50% !important;
+    flex-basis: 50% !important;
+  }
+
+  body.iframe-page .content h1 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem) !important;
+  }
+}
+
+/* =========================================================
+   PHONE IFRAME HOME
+   ========================================================= */
+
+@media (max-width: 450px) {
+  body.iframe-page main {
+    flex-direction: column !important;
+    padding: 15px 4% !important;
+    gap: 5px !important;
+  }
+
+  body.iframe-page .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  body.iframe-page .sidebar-img {
+    width: min(60vw, 260px) !important;
+    max-width: 260px !important;
+  }
+
+  body.iframe-page .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+
+  body.iframe-page .content h1 {
+    font-size: 2rem !important;
+  }
+}
+
+/* =========================================================
+   IFRAME BLOG FIX
+   ========================================================= */
+
+body.iframe-page:has(.blog-main) {
+  overflow: hidden !important;
+}
+
+body.iframe-page:has(.blog-main) main.blog-main {
+  height: 100% !important;
+  min-height: 0 !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  display: block !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+body {
+  background: #e77204;
+  color: #ffdd00;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  background-image: url("checkerbg.jpg");
+  background-repeat: repeat;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+#desktop {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #e77204;
+  background-image: url("checkerbg.jpg");
+  background-repeat: repeat;
+}
+
+/* =========================================================
+   DESKTOP APP ICONS
+   ========================================================= */
+
+#desktop-icons {
+  position: absolute;
+
+  top: 20px;
+  left: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 18px;
+
+  z-index: 1;
+}
+
+.desktop-app {
+  width: 90px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 7px;
+
+  border: 2px solid transparent;
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  text-shadow:
+    2px 2px 0 #120052,
+    -1px -1px 0 #120052,
+    1px -1px 0 #120052,
+    -1px 1px 0 #120052;
+}
+
+.desktop-app:hover {
+  background: rgba(18, 0, 82, 0.35);
+
+  border-color: rgba(255, 221, 0, 0.8);
+}
+
+.desktop-app:active {
+  background: rgba(18, 0, 82, 0.55);
+}
+
+.app-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 5px;
+
+  font-size: 38px;
+
+  filter: drop-shadow(3px 3px 0 #120052);
+}
+
+.app-name {
+  width: 100%;
+
+  font-size: 0.72rem;
+
+  font-weight: 900;
+
+  text-align: center;
+
+  line-height: 1.1;
+
+  word-break: break-word;
+}
+
+/* =========================================================
+   WINDOW AREA
+   ========================================================= */
+
+#window-area {
+  position: absolute;
+
+  inset: 0;
+
+  padding-bottom: 55px;
+
   pointer-events: none;
 }
 
-#jumper img {
+/* =========================================================
+   MAIN WINDOW
+   THIS IS BASED ON YOUR ORIGINAL #all-contents
+   ========================================================= */
+
+.desktop-window {
+  width: min(92%, 1200px);
+  height: min(90dvh, 800px);
+
+  margin: 0;
+  padding: 8px;
+
+  background: #1a1a2e;
+
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  position: absolute;
+
+  pointer-events: auto;
+}
+
+/* =========================================================
+   ACTIVE WINDOW
+   ========================================================= */
+
+.desktop-window.active {
+  outline: 2px solid #ffdd00;
+  outline-offset: 0;
+}
+
+/* =========================================================
+   NAVIGATION / TITLE BAR
+   ORIGINAL STYLE
+   ========================================================= */
+
+.desktop-window nav {
+  flex: 0 0 5%;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 1.5%;
+
+  background: #1a1a2e;
+
+  border-radius: 8px 8px 0 0;
+
+  cursor: grab;
+
+  user-select: none;
+}
+
+.desktop-window nav:active {
+  cursor: grabbing;
+}
+
+.desktop-window nav h1 {
+  margin: 0;
+
+  font-size: clamp(0.65rem, 0.7vw, 0.8rem);
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.2em;
+
+  color: #e77204;
+}
+
+/* =========================================================
+   WINDOW CONTROLS
+   ========================================================= */
+
+.window-controls {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+.window-control {
+  width: 24px;
+  height: 24px;
+
+  padding: 0;
+
+  border: 2px solid #120052;
+
+  border-radius: 5px;
+
+  background: #ff6f00;
+
+  color: #000;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.window-control:hover {
+  background: #ffdd00;
+}
+
+.window-control.close:hover {
+  background: #ff3333;
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   IFRAME
+   ========================================================= */
+
+.desktop-window iframe {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  border: none;
+
+  display: block;
+
+  background: #e77204;
+}
+
+/* =========================================================
+   MINIMIZED
+   ========================================================= */
+
+.desktop-window.minimized {
+  display: none;
+}
+
+/* =========================================================
+   MAXIMIZED
+   ========================================================= */
+
+.desktop-window.maximized {
+  left: 8px !important;
+  top: 8px !important;
+
+  width: calc(100% - 16px) !important;
+  height: calc(100% - 71px) !important;
+
+  max-width: none;
+
+  border-radius: 8px;
+}
+
+/* =========================================================
+   TASKBAR
+   ========================================================= */
+
+#taskbar {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 6px;
+
+  background: #1a1a2e;
+
+  border-top: 3px solid #120052;
+
+  z-index: 5;
+}
+
+#start-button {
+  height: 38px;
+
+  padding: 0 14px;
+
+  border: 2px solid #120052;
+
+  border-radius: 6px;
+
+  background: #ff6f00;
+
+  color: #000000;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  font-size: 0.75rem;
+
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+#start-button:hover {
+  background: #ffdd00;
+}
+
+#taskbar-windows {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  flex: 1;
+
+  min-width: 0;
+
+  overflow-x: auto;
+}
+
+.taskbar-window {
+  height: 38px;
+
+  min-width: 110px;
+  max-width: 180px;
+
+  padding: 0 12px;
+
+  border: 2px solid #120052;
+
+  border-radius: 6px;
+
+  background: #ff6f00;
+
+  color: #000000;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  font-size: 0.72rem;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.taskbar-window:hover {
+  background: #ffdd00;
+}
+
+.taskbar-window.active {
+  background: #ffdd00;
+
+  color: #120052;
+}
+
+/* =========================================================
+   START MENU
+   ========================================================= */
+
+#start-menu {
+  position: absolute;
+
+  left: 6px;
+  bottom: 61px;
+
+  width: 230px;
+
+  padding: 10px;
+
+  background: #1a1a2e;
+
+  border-radius: 10px;
+
+  display: none;
+
+  z-index: 100000;
+}
+
+#start-menu.open {
+  display: block;
+}
+
+.start-title {
+  margin: 5px 7px 10px;
+
+  color: #ffdd00;
+
+  font-size: 0.75rem;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.1em;
+}
+
+.start-item {
+  width: 100%;
+
+  margin-bottom: 5px;
+
+  padding: 9px;
+
+  border: 2px solid #120052;
+
+  border-radius: 6px;
+
+  background: #ff6f00;
+
+  color: #000;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  font-weight: 900;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.start-item:hover {
+  background: #ffdd00;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  #desktop-icons {
+    top: 10px;
+    left: 10px;
+
+    gap: 10px;
+  }
+
+  .desktop-app {
+    width: 75px;
+  }
+
+  .app-icon {
+    width: 48px;
+    height: 48px;
+
+    font-size: 32px;
+  }
+
+  .app-name {
+    font-size: 0.65rem;
+  }
+
+  .desktop-window {
+    width: 92vw;
+    height: 82vh;
+
+    padding: 6px;
+
+    border-radius: 10px;
+  }
+
+  .desktop-window nav {
+    min-height: 32px;
+  }
+
+  .window-control {
+    width: 22px;
+    height: 22px;
+  }
+
+  .taskbar-window {
+    min-width: 90px;
+  }
+}
+
+@media (max-width: 450px) {
+  #desktop-icons {
+    gap: 8px;
+  }
+
+  .desktop-app {
+    width: 65px;
+  }
+
+  .app-icon {
+    width: 42px;
+    height: 42px;
+
+    font-size: 28px;
+  }
+
+  .app-name {
+    font-size: 0.6rem;
+  }
+
+  .desktop-window {
+    width: 95vw;
+    height: 82vh;
+
+    padding: 4px;
+  }
+
+  .desktop-window nav h1 {
+    font-size: 0.55rem;
+  }
+
+  .window-control {
+    width: 20px;
+    height: 20px;
+
+    font-size: 11px;
+  }
+
+  #start-button {
+    padding: 0 9px;
+
+    font-size: 0.65rem;
+  }
+
+  .taskbar-window {
+    min-width: 80px;
+
+    font-size: 0.62rem;
+  }
 }
