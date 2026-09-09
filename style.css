@@ -16,12 +16,16 @@
   border: none;
   display: block;
 
-  background: #e77204;
+  background: var(--pri-color);
 }
 
 /* =========================================================
-   PAGE / BODY
+   PAGE / BODY / STYLING
    ========================================================= */
+
+:root{
+  --pri-color: #e77204;
+}
 
 html,
 body {
@@ -39,13 +43,10 @@ body {
   align-items: center;
   justify-content: center;
 
-  background: #e77204;
+  background: var(--pri-color);
   color: #ffdd00;
 
   font-family: "Comic Sans MS", Arial, sans-serif;
-
-  background-image: url("checkerbg.jpg");
-  background-repeat: repeat;
 }
 
 /* =========================================================
@@ -103,7 +104,7 @@ nav h1 {
 
   letter-spacing: 0.2em;
 
-  color: #e77204;
+  color: var(--pri-color);
 }
 
 /* =========================================================
@@ -149,7 +150,7 @@ nav h1 {
 }
 
 .nav-li a:hover {
-  background: #e77204;
+  background: var(--pri-color);
 
   color: #120052;
 }
@@ -185,7 +186,7 @@ main {
 
   padding: 2% 3%;
 
-  background: #e77204;
+  background: var(--pri-color);
 
   border-radius: 0 0 8px 8px;
 
@@ -332,7 +333,7 @@ main {
    ========================================================= */
 
 .links-main {
-  background: #e77204;
+  background: var(--pri-color);
 
   display: flex;
 
@@ -465,9 +466,9 @@ main {
 
   padding: 45px 6% 70px;
 
-  background: #e77204;
+  background: var(--pri-color);
 
-  scrollbar-color: #120052 #e77204;
+  scrollbar-color: #120052 var(--pri-color);
 }
 
 .blog-container {
@@ -682,7 +683,7 @@ main {
 }
 
 .blog-main::-webkit-scrollbar-track {
-  background: #e77204;
+  background: var(--pri-color);
 }
 
 .blog-main::-webkit-scrollbar-thumb {
@@ -690,7 +691,7 @@ main {
 
   border-radius: 10px;
 
-  border: 2px solid #e77204;
+  border: 2px solid var(--pri-color);
 }
 
 /* =========================================================
@@ -899,7 +900,7 @@ body.iframe-page {
 body.iframe-page {
   min-height: 100% !important;
   display: block !important;
-  background: #e77204 !important;
+  background: var(--pri-color) !important;
   background-image: none !important;
   overflow: hidden !important;
 }
@@ -919,7 +920,7 @@ body.iframe-page main {
   align-items: center !important;
   justify-content: center !important;
   gap: 7% !important;
-  background: #e77204 !important;
+  background: var(--pri-color) !important;
   border-radius: 0 !important;
   overflow: hidden !important;
 }
@@ -1101,13 +1102,15 @@ body {
 }
 
 body {
-  background: #e77204;
+  background: var(--pri-color);
   color: #ffdd00;
 
   font-family: "Comic Sans MS", Arial, sans-serif;
 
-  background-image: url("checkerbg.jpg");
+  background-image: url("assets/checkerbg.png");
   background-repeat: repeat;
+  background-size: 116px;
+  image-rendering: pixelated;
 }
 
 /* =========================================================
@@ -1123,10 +1126,6 @@ body {
   height: 100%;
 
   overflow: hidden;
-
-  background: #e77204;
-  background-image: url("checkerbg.jpg");
-  background-repeat: repeat;
 }
 
 /* =========================================================
@@ -1314,7 +1313,7 @@ body {
 
   letter-spacing: 0.2em;
 
-  color: #e77204;
+  color: var(--pri-color);
 }
 
 /* =========================================================
@@ -1379,7 +1378,7 @@ body {
 
   display: block;
 
-  background: #e77204;
+  background: var(--pri-color);
 }
 
 /* =========================================================
