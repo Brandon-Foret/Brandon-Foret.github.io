@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Photos</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="photo-explorer">
+
+    <!-- =====================================================
+         TOOLBAR
+         ===================================================== -->
+
+    <div class="photo-explorer-toolbar">
+
+      <button
+        id="photo-explorer-back"
+        type="button"
+        title="Back"
+      >
+        <span class="photo-explorer-icon back">←</span>
+        <span class="photo-explorer-button-text">Back</span>
+      </button>
+
+
+      <button
+        id="photo-explorer-forward"
+        type="button"
+        title="Forward"
+      >
+        <span class="photo-explorer-icon forward">→</span>
+        <span class="photo-explorer-button-text">Forward</span>
+      </button>
+
+
+      <button
+        id="photo-explorer-up"
+        type="button"
+        title="Up"
+      >
+        <span class="photo-explorer-icon up">↑</span>
+        <span class="photo-explorer-button-text">Up</span>
+      </button>
+
+
+      <div class="photo-explorer-separator"></div>
+
+      <button
+        type="button"
+        title="View"
+      >
+        <span class="photo-explorer-icon">▦</span>
+        <span class="photo-explorer-button-text">View</span>
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         ADDRESS BAR
+         ===================================================== -->
+
+    <div class="photo-explorer-address-row">
+
+      <span class="photo-explorer-address-label">
+        Address
+      </span>
+
+
+      <div class="photo-explorer-address-bar">
+
+        <span id="photo-explorer-address-text">
+          Photos
+        </span>
+
+      </div>
+
+
+      <button
+        class="photo-explorer-go"
+        type="button"
+      >
+        Go
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         FILE AREA
+         ===================================================== -->
+
+    <div class="photo-explorer-body">
+
+      <div
+        id="photo-explorer-file-area"
+        class="photo-explorer-file-area"
+      ></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         STATUS BAR
+         ===================================================== -->
+
+    <div class="photo-explorer-status-bar">
+
+      <span id="photo-explorer-status-text">
+        0 objects
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

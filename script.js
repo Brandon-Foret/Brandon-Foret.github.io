@@ -15,7 +15,6 @@ function createWindow(url, title) {
   const windowElement = document.createElement("div");
 
   windowElement.className = "desktop-window";
-
   windowElement.id = windowId;
 
   const offset = (windowCount - 1) % 8;
@@ -298,6 +297,7 @@ function escapeAttribute(text) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
+``;
 
 const jumper = document.getElementById("jumper");
 
