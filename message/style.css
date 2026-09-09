@@ -12,7 +12,7 @@ body {
 
   background: #e77204;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
+  font-family: "LDFComicSans";
 }
 
 .container {
@@ -59,7 +59,7 @@ textarea {
   color: white;
 
   font-size: 16px;
-  font-family: "Comic Sans MS", Arial, sans-serif;
+  font-family: "LDFComicSans";
 
   outline: none;
 }
@@ -86,7 +86,7 @@ button {
   color: white;
 
   font-size: 16px;
-  font-family: "Comic Sans MS", Arial, sans-serif;
+  font-family: "LDFComicSans";
 
   cursor: pointer;
 
@@ -117,7 +117,7 @@ button:disabled {
   text-align: center;
 
   font-size: 14px;
-  font-family: "Comic Sans MS", Arial, sans-serif;
+  font-family: "LDFComicSans";
 }
 
 .success {
