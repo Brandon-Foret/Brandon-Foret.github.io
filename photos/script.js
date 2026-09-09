@@ -657,7 +657,10 @@ function photoExplorerOpen(item) {
     }),
   );
 
-  createWindow("photos/_viewer/", item.title || item.name || item.imagePath);
+  createWindow(
+    "photos/_viewer/index.html",
+    item.title || item.name || item.imagePath,
+  );
 }
 
 function photoExplorerDisplayFolder(folder) {
