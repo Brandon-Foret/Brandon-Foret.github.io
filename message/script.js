@@ -1,5 +1,5 @@
 const WEBHOOK_URL =
-  "https://discord.com/api/webhooks/1547277222401015838/4EfaP8FtQQljjE6z%7C3Pu5%D1%833TdZ-bq%7C7YjXFLFgWmFdJPt2ao6sB_MivsCij29G_pEu7w"; // ik this is really insecure but i kinda dont care much, its supposed too just be a message system anyway, please dont nuke it <3
+  "https://discord.com/api/webhooks/1547277222401015838/4EfaP8FtQQljjE6zI3Pu5y3TdZ-bql7YjXFLFgWmFdJPt2ao6sB_MivsCij29G_pEu7W"; // ik this is really insecure but i kinda dont care much, its supposed too just be a message system anyway, please dont nuke it <3
 
 const messageInput = document.getElementById("message");
 const sendButton = document.getElementById("sendButton");
