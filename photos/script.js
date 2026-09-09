@@ -1,7 +1,3 @@
-/* ========================================
-   FILE SYSTEM
-   ======================================== */
-
 const photoExplorerFileSystem = {
   name: "Photos",
   type: "folder",
@@ -641,26 +637,28 @@ function photoExplorerGetCreateWindow() {
 }
 
 function photoExplorerOpen(item) {
-  const createWindow = photoExplorerGetCreateWindow();
+  const imageViewer = document.createElement("div");
+  imageViewer.className = "photo-explorer-image-viewer";
 
-  if (!createWindow) {
-    console.error("Could not find createWindow().");
+  const image = document.createElement("img");
+  image.className = "photo-explorer-image-viewer-image";
+  image.src = item.imagePath;
+  image.alt = item.title || item.name || "Photo";
 
-    return;
-  }
+  const closeButton = document.createElement("button");
+  closeButton.className = "photo-explorer-image-viewer-close";
+  closeButton.textContent = "✕ Close";
 
-  sessionStorage.setItem(
-    "photoExplorerCurrentImage",
-    JSON.stringify({
-      imagePath: new URL(item.imagePath, window.location.href).href,
-      title: item.title || item.name || item.imagePath,
-    }),
-  );
+  closeButton.addEventListener("click", () => {
+    imageViewer.remove();
+    photoExplorerFileArea.style.display = "";
+  });
 
-  createWindow(
-    "photos/_viewer/index.html",
-    item.title || item.name || item.imagePath,
-  );
+  imageViewer.appendChild(image);
+  imageViewer.appendChild(closeButton);
+
+  photoExplorerFileArea.style.display = "none";
+  photoExplorerFileArea.parentElement.appendChild(imageViewer);
 }
 
 function photoExplorerDisplayFolder(folder) {

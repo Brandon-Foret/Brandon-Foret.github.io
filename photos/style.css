@@ -580,3 +580,63 @@ body {
     width: 82px;
   }
 }
+
+.photo-explorer-image-viewer {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: #ff6f007a;
+
+  z-index: 10;
+}
+
+.photo-explorer-image-viewer-image {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+
+  border: 3px solid #ffdd00;
+  border-radius: 6px;
+
+  background: #1a1a2e;
+}
+
+.photo-explorer-image-viewer-close {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  height: 32px;
+
+  padding: 3px 10px;
+
+  background: #ff6f007a;
+
+  border: 2px solid #ffdd00;
+  border-radius: 5px;
+
+  color: #120052;
+
+  font-family: "Comic Sans MS", Arial, sans-serif;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.photo-explorer-image-viewer-close:hover {
+  background: #ffdd00;
+}
+
+.photo-explorer-image-viewer-close:active {
+  background: #120052;
+  color: #ffdd00;
+}
