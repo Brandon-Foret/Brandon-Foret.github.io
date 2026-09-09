@@ -16,12 +16,22 @@
   border: none;
   display: block;
 
-  background: #e77204;
+  background: var(--pri-color);
 }
 
 /* =========================================================
-   PAGE / BODY
+   PAGE / BODY / STYLING
    ========================================================= */
+
+@font-face {
+  font-family: "LDFComicSans";
+  src: url(assets/comic-sans.ttf);
+}
+
+:root{
+  --pri-color: #e77204;
+  --font: "LDFComicSans";
+}
 
 html,
 body {
@@ -39,13 +49,10 @@ body {
   align-items: center;
   justify-content: center;
 
-  background: #e77204;
+  background: var(--pri-color);
   color: #ffdd00;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
-  background-image: url("checkerbg.jpg");
-  background-repeat: repeat;
+  font-family: var(--font);
 }
 
 /* =========================================================
@@ -103,7 +110,7 @@ nav h1 {
 
   letter-spacing: 0.2em;
 
-  color: #e77204;
+  color: var(--pri-color);
 }
 
 /* =========================================================
@@ -129,8 +136,9 @@ nav h1 {
 
   text-decoration: none;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   font-size: clamp(0.7rem, 0.75vw, 0.85rem);
 
   font-weight: 500;
@@ -149,7 +157,7 @@ nav h1 {
 }
 
 .nav-li a:hover {
-  background: #e77204;
+  background: var(--pri-color);
 
   color: #120052;
 }
@@ -185,7 +193,7 @@ main {
 
   padding: 2% 3%;
 
-  background: #e77204;
+  background: var(--pri-color);
 
   border-radius: 0 0 8px 8px;
 
@@ -332,7 +340,7 @@ main {
    ========================================================= */
 
 .links-main {
-  background: #e77204;
+  background: var(--pri-color);
 
   display: flex;
 
@@ -360,8 +368,9 @@ main {
 
   color: #ffdd00;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   font-size: clamp(3rem, 7vw, 5rem);
 
   font-weight: 700;
@@ -398,8 +407,9 @@ main {
 
   color: #000000;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   font-size: clamp(0.7rem, 0.9vw, 1rem);
 
   font-weight: 600;
@@ -465,9 +475,9 @@ main {
 
   padding: 45px 6% 70px;
 
-  background: #e77204;
+  background: var(--pri-color);
 
-  scrollbar-color: #120052 #e77204;
+  scrollbar-color: #120052 var(--pri-color);
 }
 
 .blog-container {
@@ -495,8 +505,9 @@ main {
 
   color: #120052;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   font-size: clamp(2rem, 5vw, 4rem);
 
   line-height: 1;
@@ -682,7 +693,7 @@ main {
 }
 
 .blog-main::-webkit-scrollbar-track {
-  background: #e77204;
+  background: var(--pri-color);
 }
 
 .blog-main::-webkit-scrollbar-thumb {
@@ -690,7 +701,7 @@ main {
 
   border-radius: 10px;
 
-  border: 2px solid #e77204;
+  border: 2px solid var(--pri-color);
 }
 
 /* =========================================================
@@ -899,7 +910,7 @@ body.iframe-page {
 body.iframe-page {
   min-height: 100% !important;
   display: block !important;
-  background: #e77204 !important;
+  background: var(--pri-color) !important;
   background-image: none !important;
   overflow: hidden !important;
 }
@@ -919,7 +930,7 @@ body.iframe-page main {
   align-items: center !important;
   justify-content: center !important;
   gap: 7% !important;
-  background: #e77204 !important;
+  background: var(--pri-color) !important;
   border-radius: 0 !important;
   overflow: hidden !important;
 }
@@ -1101,13 +1112,16 @@ body {
 }
 
 body {
-  background: #e77204;
+  background: var(--pri-color);
   color: #ffdd00;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
-  background-image: url("checkerbg.jpg");
+  font-family: var(--font);
+  src:var(--font-src)
+;
+  background-image: url("assets/checkerbg.png");
   background-repeat: repeat;
+  background-size: 116px;
+  image-rendering: pixelated;
 }
 
 /* =========================================================
@@ -1123,10 +1137,6 @@ body {
   height: 100%;
 
   overflow: hidden;
-
-  background: #e77204;
-  background-image: url("checkerbg.jpg");
-  background-repeat: repeat;
 }
 
 /* =========================================================
@@ -1171,8 +1181,9 @@ body {
 
   color: #ffffff;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   cursor: pointer;
 
   user-select: none;
@@ -1314,7 +1325,7 @@ body {
 
   letter-spacing: 0.2em;
 
-  color: #e77204;
+  color: var(--pri-color);
 }
 
 /* =========================================================
@@ -1379,7 +1390,7 @@ body {
 
   display: block;
 
-  background: #e77204;
+  background: var(--pri-color);
 }
 
 /* =========================================================
@@ -1447,8 +1458,9 @@ body {
 
   color: #000000;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   font-size: 0.75rem;
 
   font-weight: 900;
@@ -1490,8 +1502,9 @@ body {
 
   color: #000000;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   font-size: 0.72rem;
 
   font-weight: 900;
@@ -1571,8 +1584,9 @@ body {
 
   color: #000;
 
-  font-family: "Comic Sans MS", Arial, sans-serif;
-
+  font-family: var(--font);
+  src:var(--font-src)
+;
   font-weight: 900;
 
   text-align: left;
