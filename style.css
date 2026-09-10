@@ -715,7 +715,9 @@ main {
 
   z-index: 67;
 
-  pointer-events: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
 
 #jumper img {

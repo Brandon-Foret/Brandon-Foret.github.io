@@ -477,18 +477,156 @@ let velocityY = 0;
 const gravity = 0.72;
 const jumpPower = -12;
 
-let onGround = true;
+const NORMAL_SPEED = 5;
+const SPEED_RETURN_RATE = 0.02;
+const MAX_THROW_SPEED = 28;
 
+let onGround = true;
 let direction = 1;
+
+const pickupSound = new Audio("assets/squeak_Q72c7Tg.mp3");
+
+pickupSound.volume = 0.7;
 
 let scaleX = 1;
 let scaleY = 1;
+
 const baseFrameTime = 1000 / 60;
 let lastTime = performance.now();
 
+let dragging = false;
+
+let grabOffsetX = 0;
+let grabOffsetY = 0;
+
+let previousPointerX = 0;
+let previousPointerY = 0;
+
+let dragVelocityX = 0;
+let dragVelocityY = 0;
+
+let dragAccelerationX = 0;
+let dragAccelerationY = 0;
+
+jumper.style.touchAction = "none";
+jumper.style.userSelect = "none";
+jumper.style.cursor = "grab";
+
+jumper.addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+
+  dragging = true;
+
+  jumper.setPointerCapture(event.pointerId);
+
+  const rect = jumper.getBoundingClientRect();
+
+  grabOffsetX = event.clientX - rect.left;
+  grabOffsetY = event.clientY - rect.top;
+
+  previousPointerX = event.clientX;
+  previousPointerY = event.clientY;
+
+  dragVelocityX = 0;
+  dragVelocityY = 0;
+
+  dragAccelerationX = 0;
+  dragAccelerationY = 0;
+
+  velocityX = 0;
+  velocityY = 0;
+
+  pickupSound.currentTime = 0;
+  pickupSound.play().catch(() => {});
+
+  jumper.style.cursor = "grabbing";
+});
+
+jumper.addEventListener("pointermove", (event) => {
+  if (!dragging) return;
+
+  event.preventDefault();
+
+  const dx = event.clientX - previousPointerX;
+  const dy = event.clientY - previousPointerY;
+
+  const rawVelocityX = dx;
+  const rawVelocityY = dy;
+
+  dragAccelerationX = rawVelocityX - dragVelocityX;
+
+  dragAccelerationY = rawVelocityY - dragVelocityY;
+
+  dragVelocityX += (rawVelocityX - dragVelocityX) * 0.35;
+
+  dragVelocityY += (rawVelocityY - dragVelocityY) * 0.35;
+
+  x += dx;
+  y += dy;
+
+  previousPointerX = event.clientX;
+  previousPointerY = event.clientY;
+
+  if (dx > 0) {
+    direction = 1;
+  } else if (dx < 0) {
+    direction = -1;
+  }
+});
+
+function releaseJumper(event) {
+  if (!dragging) return;
+
+  dragging = false;
+
+  const speed = Math.hypot(dragVelocityX, dragVelocityY);
+
+  let throwPower = 1.8;
+  throwPower += Math.min(speed * 0.12, 4);
+
+  const aggression = Math.hypot(dragAccelerationX, dragAccelerationY);
+
+  throwPower += Math.min(aggression * 0.08, 3);
+
+  let throwX = dragVelocityX * throwPower;
+
+  let throwY = dragVelocityY * throwPower;
+
+  if (speed > 15) {
+    throwX *= 1.25;
+    throwY *= 1.25;
+  }
+
+  const throwSpeed = Math.hypot(throwX, throwY);
+
+  if (throwSpeed > MAX_THROW_SPEED) {
+    const multiplier = MAX_THROW_SPEED / throwSpeed;
+
+    throwX *= multiplier;
+    throwY *= multiplier;
+  }
+
+  velocityX = throwX;
+  velocityY = throwY;
+
+  onGround = false;
+
+  jumper.style.cursor = "grab";
+
+  try {
+    jumper.releasePointerCapture(event.pointerId);
+  } catch (error) {}
+}
+
+jumper.addEventListener("pointerup", releaseJumper);
+
+jumper.addEventListener("pointercancel", releaseJumper);
+
 function animate(currentTime) {
   requestAnimationFrame(animate);
+
   const elapsed = currentTime - lastTime;
+
   if (elapsed < baseFrameTime) {
     return;
   }
@@ -497,42 +635,64 @@ function animate(currentTime) {
 
   lastTime = currentTime;
 
-  x += velocityX * frameScale;
-  velocityY += gravity * frameScale;
-  y += velocityY * frameScale;
+  if (!dragging) {
+    const targetSpeed = Math.sign(velocityX) * NORMAL_SPEED;
 
-  if (y >= -50) {
-    y = -50;
-    velocityY = jumpPower;
-    onGround = true;
-  } else {
-    onGround = false;
+    velocityX += (targetSpeed - velocityX) * SPEED_RETURN_RATE * frameScale;
+
+    if (Math.abs(velocityX) < 0.05 && Math.abs(velocityX) > 0) {
+      velocityX = Math.sign(velocityX) * NORMAL_SPEED;
+    }
+
+    x += velocityX * frameScale;
+    velocityY += gravity * frameScale;
+    y += velocityY * frameScale;
+
+    if (y >= -50) {
+      y = -50;
+
+      velocityY = jumpPower;
+
+      onGround = true;
+    } else {
+      onGround = false;
+    }
+    const maxX = window.innerWidth - jumper.offsetWidth;
+
+    if (x <= 0) {
+      x = 0;
+
+      velocityX *= -1;
+
+      direction *= -1;
+    }
+
+    if (x >= maxX) {
+      x = maxX;
+
+      velocityX *= -1;
+
+      direction *= -1;
+    }
   }
 
-  const maxX = window.innerWidth - jumper.offsetWidth;
+  const targetScaleX = dragging ? 1.15 : onGround ? 5 : 1;
 
-  if (x <= 0) {
-    x = 0;
-    velocityX *= -1;
-    direction *= -1;
-  }
+  const targetScaleY = dragging ? 0.85 : onGround ? 0.1 : 1;
 
-  if (x >= maxX) {
-    x = maxX;
-    velocityX *= -1;
-    direction *= -1;
-  }
-
-  const targetScaleX = onGround ? 5 : 1;
-  const targetScaleY = onGround ? 0.1 : 1;
   const ease = 0.15;
 
   scaleX += (targetScaleX - scaleX) * ease;
+
   scaleY += (targetScaleY - scaleY) * ease;
 
   jumper.style.transform = `
     translate(${x}px, ${y}px)
-    scale(${scaleX * direction}, ${scaleY})
+    scale(
+      ${scaleX * direction},
+      ${scaleY}
+    )
   `;
 }
+
 requestAnimationFrame(animate);
