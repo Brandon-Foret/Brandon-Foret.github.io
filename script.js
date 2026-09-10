@@ -316,12 +316,26 @@ let direction = 1;
 
 let scaleX = 1;
 let scaleY = 1;
+const targetFPS = 60; // maybe 30? yeah no 60 looks good! :)
+const frameInterval = 1000 / targetFPS; // 1s 
+const baseFrameTime = 1000 / 60;
+let lastTime = performance.now();
 
-function animate() {
-  x += velocityX;
-  velocityY += gravity;
-  y += velocityY;
+function animate(currentTime) {
+  requestAnimationFrame(animate);
+  const elapsed = currentTime - lastTime;
+  if (elapsed < frameInterval) {
+    return;
+  }
 
+  const frameScale = Math.min(elapsed / baseFrameTime, 3);
+
+  lastTime = currentTime;
+
+  x += velocityX * frameScale;
+  velocityY += gravity * frameScale;
+  y += velocityY * frameScale;
+  
   if (y >= -50) {
     y = -50;
     velocityY = jumpPower;
@@ -356,7 +370,6 @@ function animate() {
     scale(${scaleX * direction}, ${scaleY})
   `;
 
-  requestAnimationFrame(animate);
 }
+requestAnimationFrame(animate);
 
-animate();
