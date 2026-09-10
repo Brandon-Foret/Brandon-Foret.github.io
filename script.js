@@ -316,15 +316,13 @@ let direction = 1;
 
 let scaleX = 1;
 let scaleY = 1;
-const targetFPS = 60; // maybe 30? yeah no 60 looks good! :)
-const frameInterval = 1000 / targetFPS; // 1s 
 const baseFrameTime = 1000 / 60;
 let lastTime = performance.now();
 
 function animate(currentTime) {
   requestAnimationFrame(animate);
   const elapsed = currentTime - lastTime;
-  if (elapsed < frameInterval) {
+  if (elapsed < baseFrameTime) {
     return;
   }
 
