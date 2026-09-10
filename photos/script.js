@@ -295,14 +295,14 @@ const photoExplorerFileSystem = {
               type: "folder",
               children: [
                 {
+                  name: "Kitty Cry",
+                  type: "image",
+                  imagePath: "brandon/organize/image 2.PNG",
+                },
+                {
                   name: "Kitty Shy",
                   type: "image",
                   imagePath: "brandon/organize/kittysleeperemoji-1.PNG",
-                },
-                {
-                  name: "Kitty Cry",
-                  image: "image",
-                  imagePath: "brandon/organize/image 2.PNG",
                 },
                 {
                   name: "Kitty Autism",
@@ -328,7 +328,7 @@ const photoExplorerFileSystem = {
             {
               name: "Default Render",
               type: "image",
-              imagePath: "/OCRender.png",
+              imagePath: "/assets/OCRender.png",
             },
             {
               name: "Silly Waving Kitty Render",
@@ -518,11 +518,6 @@ const photoExplorerFileSystem = {
             {
               type: "image",
               imagePath:
-                "siesta.py/VRChat_2026-04-02_17-41-34.759_1920x1080.png",
-            },
-            {
-              type: "image",
-              imagePath:
                 "siesta.py/VRChat_2026-04-02_17-41-34.759_1920x1080.PNG",
             },
           ],
@@ -647,7 +642,7 @@ function photoExplorerOpen(item) {
 
   const closeButton = document.createElement("button");
   closeButton.className = "photo-explorer-image-viewer-close";
-  closeButton.textContent = "✕ Close";
+  closeButton.textContent = "×";
 
   closeButton.addEventListener("click", () => {
     imageViewer.remove();
@@ -657,7 +652,6 @@ function photoExplorerOpen(item) {
   imageViewer.appendChild(image);
   imageViewer.appendChild(closeButton);
 
-  photoExplorerFileArea.style.display = "none";
   photoExplorerFileArea.parentElement.appendChild(imageViewer);
 }
 

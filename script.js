@@ -20,9 +20,7 @@ function createWindow(url, title) {
   const offset = (windowCount - 1) % 8;
 
   windowElement.style.left = `${80 + offset * 30}px`;
-
   windowElement.style.top = `${50 + offset * 25}px`;
-
   windowElement.style.zIndex = ++highestZ;
 
   windowElement.innerHTML = `
@@ -72,15 +70,89 @@ function setupWindow(windowElement) {
   const titleBar = windowElement.querySelector("nav");
 
   const minimizeButton = windowElement.querySelector(".minimize");
-
   const maximizeButton = windowElement.querySelector(".maximize");
-
   const closeButton = windowElement.querySelector(".close");
 
   let isDragging = false;
+  let isResizing = false;
 
   let offsetX = 0;
   let offsetY = 0;
+
+  let resizeDirection = "";
+
+  let startX = 0;
+  let startY = 0;
+
+  let startLeft = 0;
+  let startTop = 0;
+
+  let startWidth = 0;
+  let startHeight = 0;
+
+  const minWidth = 250;
+  const minHeight = 150;
+  const resizeMargin = 8;
+
+  function getResizeDirection(event) {
+    if (windowElement.classList.contains("maximized")) {
+      return "";
+    }
+
+    const rect = windowElement.getBoundingClientRect();
+
+    const margin = isResizing ? 40 : 12;
+
+    const left = event.clientX - rect.left;
+    const right = rect.right - event.clientX;
+    const top = event.clientY - rect.top;
+    const bottom = rect.bottom - event.clientY;
+
+    let direction = "";
+
+    if (top <= margin) {
+      direction += "n";
+    } else if (bottom <= margin) {
+      direction += "s";
+    }
+
+    if (left <= margin) {
+      direction += "w";
+    } else if (right <= margin) {
+      direction += "e";
+    }
+
+    return direction;
+  }
+
+  function updateResizeCursor(event) {
+    if (isDragging || isResizing) {
+      return;
+    }
+
+    const direction = getResizeDirection(event);
+
+    const cursors = {
+      n: "ns-resize",
+      s: "ns-resize",
+      e: "ew-resize",
+      w: "ew-resize",
+      ne: "nesw-resize",
+      sw: "nesw-resize",
+      nw: "nwse-resize",
+      se: "nwse-resize",
+    };
+
+    windowElement.style.cursor = cursors[direction] || "";
+  }
+
+  windowElement.addEventListener("mousemove", updateResizeCursor);
+
+  windowElement.addEventListener("mouseleave", () => {
+    if (!isResizing && !isDragging) {
+      windowElement.style.cursor = "";
+    }
+  });
 
   titleBar.addEventListener("mousedown", (event) => {
     if (event.target.closest(".window-control")) {
@@ -91,6 +163,12 @@ function setupWindow(windowElement) {
       return;
     }
 
+    const direction = getResizeDirection(event);
+
+    if (direction) {
+      return;
+    }
+
     bringToFront(windowElement);
 
     isDragging = true;
@@ -98,30 +176,121 @@ function setupWindow(windowElement) {
     const rect = windowElement.getBoundingClientRect();
 
     offsetX = event.clientX - rect.left;
-
     offsetY = event.clientY - rect.top;
 
     event.preventDefault();
   });
 
-  document.addEventListener("mousemove", (event) => {
-    if (!isDragging) {
+  windowElement.addEventListener("mousedown", (event) => {
+    bringToFront(windowElement);
+
+    const direction = getResizeDirection(event);
+
+    if (!direction) {
       return;
+    }
+
+    isResizing = true;
+    resizeDirection = direction;
+
+    const rect = windowElement.getBoundingClientRect();
+
+    startX = event.clientX;
+    startY = event.clientY;
+
+    startLeft = rect.left;
+    startTop = rect.top;
+
+    startWidth = rect.width;
+    startHeight = rect.height;
+
+    windowElement.style.cursor =
+      {
+        n: "ns-resize",
+        s: "ns-resize",
+        e: "ew-resize",
+        w: "ew-resize",
+        ne: "nesw-resize",
+        sw: "nesw-resize",
+        nw: "nwse-resize",
+        se: "nwse-resize",
+      }[direction] || "default";
+
+    event.preventDefault();
+    event.stopPropagation();
+  });
+
+  document.addEventListener("mousemove", (event) => {
+    if (isDragging) {
+      const desktopRect = desktop.getBoundingClientRect();
+
+      let x = event.clientX - desktopRect.left - offsetX;
+      let y = event.clientY - desktopRect.top - offsetY;
+
+      windowElement.style.left = `${x}px`;
+      windowElement.style.top = `${y}px`;
+
+      return;
+    }
+
+    if (!isResizing) {
+      return;
+    }
+
+    const dx = event.clientX - startX;
+    const dy = event.clientY - startY;
+
+    let newLeft = startLeft;
+    let newTop = startTop;
+
+    let newWidth = startWidth;
+    let newHeight = startHeight;
+
+    if (resizeDirection.includes("e")) {
+      newWidth = Math.max(minWidth, startWidth + dx);
+    }
+
+    if (resizeDirection.includes("s")) {
+      newHeight = Math.max(minHeight, startHeight + dy);
+    }
+
+    if (resizeDirection.includes("w")) {
+      newWidth = Math.max(minWidth, startWidth - dx);
+
+      if (newWidth !== minWidth || startWidth - dx >= minWidth) {
+        newLeft = startLeft + dx;
+      } else {
+        newLeft = startLeft + startWidth - minWidth;
+      }
+    }
+
+    if (resizeDirection.includes("n")) {
+      newHeight = Math.max(minHeight, startHeight - dy);
+
+      if (newHeight !== minHeight || startHeight - dy >= minHeight) {
+        newTop = startTop + dy;
+      } else {
+        newTop = startTop + startHeight - minHeight;
+      }
     }
 
     const desktopRect = desktop.getBoundingClientRect();
 
-    let x = event.clientX - desktopRect.left - offsetX;
+    newLeft -= desktopRect.left;
+    newTop -= desktopRect.top;
 
-    let y = event.clientY - desktopRect.top - offsetY;
-
-    windowElement.style.left = `${x}px`;
-
-    windowElement.style.top = `${y}px`;
+    windowElement.style.left = `${newLeft}px`;
+    windowElement.style.top = `${newTop}px`;
+    windowElement.style.width = `${newWidth}px`;
+    windowElement.style.height = `${newHeight}px`;
   });
 
   document.addEventListener("mouseup", () => {
     isDragging = false;
+    isResizing = false;
+    resizeDirection = "";
+
+    windowElement.style.cursor = "";
   });
 
   windowElement.addEventListener("mousedown", () => {
@@ -268,7 +437,7 @@ document.addEventListener("click", (event) => {
   startMenu.classList.remove("open");
 });
 
-document.addEventListener("click", (event) => {
+document.addEventListener("dblclick", (event) => {
   const app = event.target.closest(".desktop-app");
 
   if (!app) {
@@ -276,7 +445,6 @@ document.addEventListener("click", (event) => {
   }
 
   const url = app.dataset.url;
-
   const title = app.dataset.title;
 
   createWindow(url, title);
@@ -297,7 +465,6 @@ function escapeAttribute(text) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
-``;
 
 const jumper = document.getElementById("jumper");
 
@@ -333,7 +500,7 @@ function animate(currentTime) {
   x += velocityX * frameScale;
   velocityY += gravity * frameScale;
   y += velocityY * frameScale;
-  
+
   if (y >= -50) {
     y = -50;
     velocityY = jumpPower;
@@ -367,7 +534,5 @@ function animate(currentTime) {
     translate(${x}px, ${y}px)
     scale(${scaleX * direction}, ${scaleY})
   `;
-
 }
 requestAnimationFrame(animate);
-
