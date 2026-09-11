@@ -1,6 +1,6 @@
 @font-face {
   font-family: "LDFComicSans";
-  src: url("assets/comic-sans.ttf") format("truetype");
+  src: url("../assets/comic-sans.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
