@@ -8,7 +8,10 @@ const colors = [
   "#ff4dcb",
 ];
 
+const baseFrameTime = 1000 / 60;
+let lastTime = performance.now();
 function partyPopper() {
+
   const startX = window.innerWidth / 2;
   const startY = window.innerHeight * 0.85;
   const amount = 250;
@@ -37,11 +40,21 @@ function partyPopper() {
     const rotationSpeed = (Math.random() - 0.5) * 25;
 
     function animate() {
+      requestAnimationFrame(animate);
+      
+      const elapsed = currentTime - lastTime;
+      if (elapsed < baseFrameTime) {
+        return;
+      }
+
+      const frameScale = Math.min(elapsed / baseFrameTime, 3);
+
+      lastTime = currentTime;
       velocityY += gravity;
 
-      x += velocityX;
-      y += velocityY;
-      rotation += rotationSpeed;
+      x += velocityX * frameScale;
+      y += velocityY * frameScale;
+      rotation += rotationSpeed * frameScale;
 
       confetti.style.left = x + "px";
       confetti.style.top = y + "px";
@@ -55,7 +68,6 @@ function partyPopper() {
         velocityX = (Math.random() - 0.5) * 2;
       }
 
-      requestAnimationFrame(animate);
     }
 
     requestAnimationFrame(animate);
