@@ -153,8 +153,8 @@ function setupWindow(windowElement) {
       windowElement.style.cursor = "";
     }
   });
-
-  titleBar.addEventListener("mousedown", (event) => {
+  titleBar.addEventListener("pointerdown", handleWindowMove);
+  function handleWindowMove(event) {
     if (event.target.closest(".window-control")) {
       return;
     }
@@ -179,7 +179,11 @@ function setupWindow(windowElement) {
     offsetY = event.clientY - rect.top;
 
     event.preventDefault();
-  });
+
+    try {
+      titleBar.setPointerCapture(event.pointerId);
+    } catch (error) { /* ignore */ }
+  }
 
   windowElement.addEventListener("mousedown", (event) => {
     bringToFront(windowElement);
@@ -219,9 +223,11 @@ function setupWindow(windowElement) {
     event.preventDefault();
     event.stopPropagation();
   });
-
-  document.addEventListener("mousemove", (event) => {
+  document.addEventListener("pointermove", dragWindow, { passive: false });
+  function dragWindow(event) {
     if (isDragging) {
+      event.preventDefault();
+
       const desktopRect = desktop.getBoundingClientRect();
 
       let x = event.clientX - desktopRect.left - offsetX;
@@ -237,12 +243,13 @@ function setupWindow(windowElement) {
       return;
     }
 
+    event.preventDefault();
+
     const dx = event.clientX - startX;
     const dy = event.clientY - startY;
 
     let newLeft = startLeft;
     let newTop = startTop;
-
     let newWidth = startWidth;
     let newHeight = startHeight;
 
@@ -283,18 +290,54 @@ function setupWindow(windowElement) {
     windowElement.style.top = `${newTop}px`;
     windowElement.style.width = `${newWidth}px`;
     windowElement.style.height = `${newHeight}px`;
-  });
+  }
 
-  document.addEventListener("mouseup", () => {
+  function endWindowInteraction() {
     isDragging = false;
     isResizing = false;
     resizeDirection = "";
 
     windowElement.style.cursor = "";
-  });
+  }
 
-  windowElement.addEventListener("mousedown", () => {
+  document.addEventListener("pointerup", endWindowInteraction);
+  document.addEventListener("pointercancel", endWindowInteraction);
+
+  windowElement.addEventListener("pointerdown", (event) => {
     bringToFront(windowElement);
+
+    const direction = getResizeDirection(event);
+
+    if (!direction) {
+      return;
+    }
+
+    isResizing = true;
+    resizeDirection = direction;
+
+    const rect = windowElement.getBoundingClientRect();
+
+    startX = event.clientX;
+    startY = event.clientY;
+    startLeft = rect.left;
+    startTop = rect.top;
+    startWidth = rect.width;
+    startHeight = rect.height;
+
+    windowElement.style.cursor =
+      {
+        n: "ns-resize",
+        s: "ns-resize",
+        e: "ew-resize",
+        w: "ew-resize",
+        ne: "nesw-resize",
+        sw: "nesw-resize",
+        nw: "nwse-resize",
+        se: "nwse-resize",
+      }[direction] || "default";
+
+    event.preventDefault();
+    event.stopPropagation();
   });
 
   minimizeButton.addEventListener("click", (event) => {
@@ -407,11 +450,13 @@ function updateTaskbar() {
   });
 }
 
-startButton.addEventListener("click", (event) => {
-  event.stopPropagation();
+if (startButton && startMenu) {
+  startButton.addEventListener("click", (event) => {
+    event.stopPropagation();
 
-  startMenu.classList.toggle("open");
-});
+    startMenu.classList.toggle("open");
+  });
+}
 
 document.addEventListener("click", (event) => {
   if (
@@ -508,71 +553,82 @@ let dragVelocityY = 0;
 let dragAccelerationX = 0;
 let dragAccelerationY = 0;
 
-jumper.style.touchAction = "none";
-jumper.style.userSelect = "none";
-jumper.style.cursor = "grab";
+if (jumper) {
+  jumper.style.touchAction = "none";
+  jumper.style.userSelect = "none";
+  jumper.style.cursor = "grab";
+  jumper.addEventListener("pointerdown", (event) => {
+    if (event.button !== undefined && event.button !== 0 && event.pointerType === "mouse") {
+      return; //ignore right/middle click, but allow touch its hacky but works :3
+    }
 
-jumper.addEventListener("pointerdown", (event) => {
-  event.preventDefault();
+    event.preventDefault();
+    event.stopPropagation();
 
-  dragging = true;
+    dragging = true;
 
-  jumper.setPointerCapture(event.pointerId);
+    try {
+      jumper.setPointerCapture(event.pointerId);
+    } catch (error) {
+      console.error("Failed to set pointer capture:", error);
+    }
 
-  const rect = jumper.getBoundingClientRect();
 
-  grabOffsetX = event.clientX - rect.left;
-  grabOffsetY = event.clientY - rect.top;
+    const rect = jumper.getBoundingClientRect();
 
-  previousPointerX = event.clientX;
-  previousPointerY = event.clientY;
+    grabOffsetX = event.clientX - rect.left;
+    grabOffsetY = event.clientY - rect.top;
 
-  dragVelocityX = 0;
-  dragVelocityY = 0;
+    previousPointerX = event.clientX;
+    previousPointerY = event.clientY;
 
-  dragAccelerationX = 0;
-  dragAccelerationY = 0;
+    dragVelocityX = 0;
+    dragVelocityY = 0;
 
-  velocityX = 0;
-  velocityY = 0;
+    dragAccelerationX = 0;
+    dragAccelerationY = 0;
 
-  pickupSound.currentTime = 0;
-  pickupSound.play().catch(() => {});
+    velocityX = 0;
+    velocityY = 0;
 
-  jumper.style.cursor = "grabbing";
-});
+    pickupSound.currentTime = 0;
+    pickupSound.play().catch(() => { });
 
-jumper.addEventListener("pointermove", (event) => {
-  if (!dragging) return;
+    jumper.style.cursor = "grabbing";
+  });
 
-  event.preventDefault();
+  jumper.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
 
-  const dx = event.clientX - previousPointerX;
-  const dy = event.clientY - previousPointerY;
+    event.preventDefault();
 
-  const rawVelocityX = dx;
-  const rawVelocityY = dy;
+    const dx = event.clientX - previousPointerX;
+    const dy = event.clientY - previousPointerY;
 
-  dragAccelerationX = rawVelocityX - dragVelocityX;
+    const rawVelocityX = dx;
+    const rawVelocityY = dy;
 
-  dragAccelerationY = rawVelocityY - dragVelocityY;
+    dragAccelerationX = rawVelocityX - dragVelocityX;
 
-  dragVelocityX += (rawVelocityX - dragVelocityX) * 0.35;
+    dragAccelerationY = rawVelocityY - dragVelocityY;
 
-  dragVelocityY += (rawVelocityY - dragVelocityY) * 0.35;
+    dragVelocityX += (rawVelocityX - dragVelocityX) * 0.35;
 
-  x += dx;
-  y += dy;
+    dragVelocityY += (rawVelocityY - dragVelocityY) * 0.35;
 
-  previousPointerX = event.clientX;
-  previousPointerY = event.clientY;
+    x += dx;
+    y += dy;
 
-  if (dx > 0) {
-    direction = 1;
-  } else if (dx < 0) {
-    direction = -1;
-  }
-});
+    previousPointerX = event.clientX;
+    previousPointerY = event.clientY;
+
+    if (dx > 0) {
+      direction = 1;
+    } else if (dx < 0) {
+      direction = -1;
+    }
+  });
+}
 
 function releaseJumper(event) {
   if (!dragging) return;
@@ -615,12 +671,12 @@ function releaseJumper(event) {
 
   try {
     jumper.releasePointerCapture(event.pointerId);
-  } catch (error) {}
+  } catch (error) { }
 }
-
-jumper.addEventListener("pointerup", releaseJumper);
-
-jumper.addEventListener("pointercancel", releaseJumper);
+if (jumper) {
+  jumper.addEventListener("pointerup", releaseJumper);
+  jumper.addEventListener("pointercancel", releaseJumper);
+}
 
 function animate(currentTime) {
   requestAnimationFrame(animate);
