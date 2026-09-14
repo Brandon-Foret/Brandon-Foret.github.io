@@ -357,6 +357,11 @@ const photoExplorerFileSystem = {
               imagePath: "brandon/Screenshot_2024-11-01_210125.PNG",
             },
             {
+              name: "Brandon In Minecraft (But Actually VRC???)",
+              type: "image",
+              imagePath: "brandon/VRChat_2025-11-13_22-03-52.202_1920x1080.png",
+            },
+            {
               name: "Cute... Thing?",
               type: "image",
               imagePath: "brandon/organize/Untitled1677_20241203165628.PNG",
@@ -464,6 +469,22 @@ const photoExplorerFileSystem = {
               imagePath: "brandon/image 2.PNG",
             },
             {
+              name: "Kitty Without His Hoodie",
+              type: "image",
+              imagePath:
+                "brandon/organize/organize this three./20_sin_titulo_20260913095223.PNG",
+            },
+            {
+              name: "Kitty Holding Out His Hand",
+              type: "image",
+              imagePath: "brandon/organize/organize this three./image 2.PNG",
+            },
+            {
+              name: "Goofy Ahh Kitty",
+              type: "image",
+              imagePath: "brandon/organize/organize this three./image 3.PNG",
+            },
+            {
               name: "Fancy Ahh Kitty Painting",
               type: "image",
               imagePath: "brandon/organize/para_coder.PNG",
@@ -478,15 +499,53 @@ const photoExplorerFileSystem = {
 
       children: [
         {
-          name: "Birthday Bash!",
+          name: "Kitty Hideout",
           type: "folder",
-
           children: [
             {
-              name: "bashbadge.PNG",
-              type: "image",
-              imagePath: "birthday-bash/bashbadge.PNG",
-              title: "Badge For Birthday Bash: September 2026",
+              name: "Birthday Bash!",
+              type: "folder",
+
+              children: [
+                {
+                  name: "bashbadge.PNG",
+                  type: "image",
+                  imagePath: "VRChat/kitty-hideout/birthday-bash/bashbadge.PNG",
+                  title: "Badge For Birthday Bash: September 2026",
+                },
+              ],
+            },
+            {
+              name: "Christmas 2025",
+              type: "folder",
+
+              children: [
+                {
+                  type: "image",
+                  imagePath:
+                    "VRChat/kitty-hideout/christmas/VRChat_2025-11-23_22-49-05.401_1920x1080.png",
+                },
+                {
+                  type: "image",
+                  imagePath:
+                    "VRChat/kitty-hideout/christmas/VRChat_2025-11-23_22-52-15.509_1920x1080.png",
+                },
+                {
+                  type: "image",
+                  imagePath:
+                    "VRChat/kitty-hideout/christmas/VRChat_2025-11-23_22-52-27.410_1920x1080.png",
+                },
+                {
+                  type: "image",
+                  imagePath:
+                    "VRChat/kitty-hideout/christmas/VRChat_2025-11-23_22-55-59.116_1920x1080.png",
+                },
+                {
+                  type: "image",
+                  imagePath:
+                    "VRChat/kitty-hideout/christmas/VRChat_2025-11-23_23-00-46.631_1920x1080.png",
+                },
+              ],
             },
           ],
         },
@@ -498,29 +557,241 @@ const photoExplorerFileSystem = {
             {
               type: "image",
               imagePath:
-                "siesta.py/VRChat_2025-05-24_20-46-55.026_1920x1080_wrld_d451f9f5-166b-41a5-b9db-504ac6182db2.PNG",
+                "VRChat/siesta.py/VRChat_2025-05-24_20-46-55.026_1920x1080_wrld_d451f9f5-166b-41a5-b9db-504ac6182db2.PNG",
             },
             {
               type: "image",
               imagePath:
-                "siesta.py/VRChat_2026-04-01_21-28-40.924_1920x1080.PNG",
+                "VRChat/siesta.py/VRChat_2026-04-01_21-28-40.924_1920x1080.PNG",
             },
             {
               type: "image",
               imagePath:
-                "siesta.py/VRChat_2026-04-02_17-28-24.672_1920x1080.PNG",
+                "VRChat/siesta.py/VRChat_2026-04-02_17-28-24.672_1920x1080.PNG",
             },
             {
               type: "image",
               imagePath:
-                "siesta.py/VRChat_2026-04-02_17-35-07.291_1920x1080.PNG",
+                "VRChat/siesta.py/VRChat_2026-04-02_17-35-07.291_1920x1080.PNG",
             },
             {
               type: "image",
               imagePath:
-                "siesta.py/VRChat_2026-04-02_17-41-34.759_1920x1080.PNG",
+                "VRChat/siesta.py/VRChat_2026-04-02_17-41-34.759_1920x1080.PNG",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2026-05-23_21-47-00.558_1920x1080_wrld_efa4b5bb-161c-44ac-bac8-05d2acb1319a.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2026-05-14_00-26-38.660_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2026-05-14_00-26-26.603_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2026-05-02_23-54-15.278_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2026-04-24_21-09-50.194_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2026-04-19_15-26-00.419_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2026-04-19_15-25-52.993_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2025-12-27_17-25-13.049_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2025-12-31_04-06-59.808_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2025-12-31_04-08-11.562_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/siesta.py/VRChat_2025-11-13_22-08-58.771_1920x1080.png",
             },
           ],
+        },
+        {
+          name: "GalaxyPup",
+          type: "folder",
+
+          children: [
+            {
+              type: "image",
+              imagePath:
+                "VRChat/galaxy-pup/VRChat_2026-06-05_02-14-01.133_1920x1080_wrld_211f195e-2a56-4e14-bde5-ad0dbce64b1e.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/galaxy-pup/VRChat_2026-06-05_02-11-56.758_1920x1080_wrld_211f195e-2a56-4e14-bde5-ad0dbce64b1e.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/galaxy-pup/VRChat_2026-06-05_01-52-53.441_1920x1080_wrld_211f195e-2a56-4e14-bde5-ad0dbce64b1e.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/galaxy-pup/VRChat_2026-06-05_01-34-58.335_1920x1080_wrld_211f195e-2a56-4e14-bde5-ad0dbce64b1e.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/galaxy-pup/VRChat_2026-06-05_01-34-51.850_1920x1080_wrld_211f195e-2a56-4e14-bde5-ad0dbce64b1e.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/galaxy-pup/VRChat_2026-06-04_07-54-13.863_1920x1080_wrld_4432ea9b-729c-46e3-8eaf-846aa0a37fdd.png",
+            },
+          ],
+        },
+        {
+          type: "folder",
+          name: "Tadashi",
+          children: [
+            {
+              type: "image",
+              imagePath:
+                "VRChat/tadashi/VRChat_2026-02-08_17-49-59.995_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/tadashi/VRChat_2026-02-08_17-54-38.271_1920x1080.png",
+            },
+            {
+              type: "image",
+              imagePath:
+                "VRChat/tadashi/VRChat_2026-02-08_17-54-45.639_1920x1080.png",
+            },
+          ],
+        },
+        {
+          type: "image",
+          name: "The Snoot Collective [2025]",
+          imagePath: "VRChat/VRChat_2026-04-03_16-27-43.480_2048x1440.png",
+        },
+        {
+          type: "image",
+          imagePath:
+            "VRChat/VRChat_2026-05-22_00-02-48.861_1920x1080_wrld_efa4b5bb-161c-44ac-bac8-05d2acb1319a.png",
+        },
+        {
+          type: "image",
+          imagePath:
+            "VRChat/VRChat_2026-05-21_23-52-45.471_1920x1080_wrld_efa4b5bb-161c-44ac-bac8-05d2acb1319a.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-05-04_21-46-47.334_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-05-01_18-39-49.890_2048x1440.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-05-01_18-23-14.879_2048x1440.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-04-24_21-08-34.685_2048x1440.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-04-24_20-14-39.024_2048x1440.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-04-24_20-13-11.355_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-04-03_16-20-13.465_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-03-01_23-05-37.373_2048x1440.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-01-11_15-05-27.237_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-01-30_19-35-20.442_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2026-01-30_19-35-31.031_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-26_04-48-59.842_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-26_04-49-02.833_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-26_04-49-04.974_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-27_00-26-04.695_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-31_06-39-20.922_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-31_06-48-16.118_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-31_07-44-06.481_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-31_07-50-16.679_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-31_08-49-01.235_1920x1080.png",
+        },
+        {
+          type: "image",
+          imagePath: "VRChat/VRChat_2025-12-31_08-49-56.007_1920x1080.png",
         },
       ],
     },
