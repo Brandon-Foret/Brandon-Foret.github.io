@@ -1120,7 +1120,7 @@ body {
     #000 0 75%,
     #FF6600 0
   );
-
+  background-position: 58px 0px; /*pixel for pixel! (my ocd is weird okay)*/
   background-size: 116px 116px;
 }
 
