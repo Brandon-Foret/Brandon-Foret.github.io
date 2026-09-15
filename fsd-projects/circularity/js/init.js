@@ -15,11 +15,12 @@ var init = function (window) {
     // PROGRAM SETUP //
     ///////////////////
 
-    // TODO 1 : Declare and initialize our variables
-
     var circles = [];
 
-    // TODO 2 : Create a function that draws a circle
+    function getRandomInt(min, max) {
+      // Math.floor rounds down to the nearest whole number
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
     function drawCircle() {
       var circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
@@ -28,63 +29,57 @@ var init = function (window) {
       circles.push(circle);
     }
 
-    // TODO 3 : Call the drawCircle() function
-
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < getRandomInt(50, 500); i++) {
       drawCircle();
     }
 
-    // TODO 7 : Use a loop to create multiple circles
+    Gamification.init({
+      canvas: canvas,
+      view: view,
+      draw: draw,
+      physikz: physikz,
+      circles: circles,
+      game: game,
+    });
 
     ///////////////////
     // PROGRAM LOGIC //
     ///////////////////
 
-    /* 
-        This Function is called 60 times/second, producing 60 frames/second.
-        In each frame, for every circle, it should redraw that circle
-        and check to see if it has drifted off the screen.         
-        */
     function update() {
-      // TODO 4 : Update the position of each circle using physikz.updatePosition()
-      // TODO 5 : Call game.checkCirclePosition() on your circles
-      // TODO 8 / TODO 9 : Iterate over the array]
-
-      for (let i = 0; i < circles.length; i++) {
+      for (var i = 0; i < circles.length; i++) {
         physikz.updatePosition(circles[i]);
         game.checkCirclePosition(circles[i]);
       }
+
+      Gamification.update();
     }
 
-    /* 
-        This Function should check the position of a circle that is passed to the 
-        Function. If that circle drifts off the screen, this Function should move
-        it to the opposite side of the screen.
-        */
     game.checkCirclePosition = function (circle) {
       var rightEdge = circle.x + circle.radius;
-      var topEdge = circle.y + circle.radius;
+      var leftEdge = circle.x - circle.radius;
+      var bottomEdge = circle.y + circle.radius;
+      var topEdge = circle.y - circle.radius;
 
-      // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-      if (rightEdge.x > canvas.width) {
-        circle.x = 0;
+      // Right side -> Left side
+      if (leftEdge > canvas.width) {
+        circle.x = -circle.radius;
       }
 
-      // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-
-      if (rightEdge.x < 0) {
-        circle.x = canvas.width;
+      // Left side -> Right side
+      if (rightEdge < 0) {
+        circle.x = canvas.width + circle.radius;
       }
 
-      if (topEdge < 0) {
-        circle.y = canvas.height;
-      }
-
+      // Bottom -> Top
       if (topEdge > canvas.height) {
-        circle.y = 0;
+        circle.y = -circle.radius;
       }
 
-      // YOUR TODO 6 CODE ENDS HERE //////////////////////////
+      // Top -> Bottom
+      if (bottomEdge < 0) {
+        circle.y = canvas.height + circle.radius;
+      }
     };
 
     /////////////////////////////////////////////////////////////

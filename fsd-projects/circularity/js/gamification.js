@@ -53,11 +53,11 @@ var Gamification = (function () {
       Multiplayer.init({
         onConnected: function () {
           console.log("Local multiplayer started");
-          
+
           // Create players immediately and start the game
           if (!player1) createPlayer1();
           createPlayer2();
-          
+
           // Start multiplayer game with countdown
           startMultiplayerGame();
         },
@@ -74,7 +74,121 @@ var Gamification = (function () {
               "Player 2: Size " + Math.floor(data.radius);
           }
         },
-      });
+      }); // Check whether a larger circle can actually absorb a smaller circle.
+      // The smaller circle must be completely inside the larger circle.
+      // =========================================
+      // ABSORPTION
+      // =========================================
+
+      // Check whether a larger circle can actually absorb a smaller circle.
+      // The smaller circle must be completely inside the larger circle.
+      function canAbsorb(larger, smaller) {
+        if (!larger || !smaller) return false;
+
+        var largerSize = getActualRadius(larger);
+        var smallerSize = getActualRadius(smaller);
+
+        // The larger circle must be at least 5% bigger.
+        if (largerSize <= smallerSize * 1.05) {
+          return false;
+        }
+
+        var dx = larger.x - smaller.x;
+        var dy = larger.y - smaller.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        // The smaller circle must be completely inside
+        // the larger circle before it can be absorbed.
+        return distance + smallerSize <= largerSize;
+      }
+
+      // Handle absorption when players collide with other circles
+      function handleAbsorption() {
+        // Skip all absorption during invincibility period
+        if (isInvincibilityActive()) {
+          return;
+        }
+
+        // =========================================
+        // PLAYER 1 VS NORMAL CIRCLES
+        // =========================================
+
+        if (player1) {
+          for (var i = circles.length - 1; i >= 0; i--) {
+            var otherCircle = circles[i];
+
+            if (!otherCircle) {
+              continue;
+            }
+
+            // Player 1 completely covers the circle
+            if (canAbsorb(player1, otherCircle)) {
+              absorb(player1, otherCircle, i, 1);
+            }
+
+            // The circle completely covers Player 1
+            else if (canAbsorb(otherCircle, player1)) {
+              removePlayer(1);
+
+              gameOver("Player 1 was absorbed!");
+
+              return;
+            }
+          }
+        }
+
+        // =========================================
+        // PLAYER 2 VS NORMAL CIRCLES
+        // =========================================
+
+        if (player2 && Multiplayer.isMultiplayer) {
+          for (var j = circles.length - 1; j >= 0; j--) {
+            var otherCircle2 = circles[j];
+
+            if (!otherCircle2) {
+              continue;
+            }
+
+            // Player 2 completely covers the circle
+            if (canAbsorb(player2, otherCircle2)) {
+              absorb(player2, otherCircle2, j, 2);
+            }
+
+            // The circle completely covers Player 2
+            else if (canAbsorb(otherCircle2, player2)) {
+              removePlayer(2);
+
+              gameOver("Player 2 was absorbed!");
+
+              return;
+            }
+          }
+
+          // =========================================
+          // PLAYER 1 VS PLAYER 2
+          // =========================================
+
+          if (player1 && player2) {
+            // Player 1 completely covers Player 2
+            if (canAbsorb(player1, player2)) {
+              absorb(player1, player2, -1, 1);
+
+              removePlayer(2);
+
+              gameOver("Player 1 wins by absorbing Player 2!");
+            }
+
+            // Player 2 completely covers Player 1
+            else if (canAbsorb(player2, player1)) {
+              absorb(player2, player1, -1, 2);
+
+              removePlayer(1);
+
+              gameOver("Player 2 wins by absorbing Player 1!");
+            }
+          }
+        }
+      }
     },
 
     // Update function called from main game loop
@@ -103,9 +217,9 @@ var Gamification = (function () {
 
   // Clear selection state from all game mode buttons
   function clearButtonSelection() {
-    var buttons = document.querySelectorAll('.game-mode-btn');
-    buttons.forEach(function(button) {
-      button.classList.remove('selected');
+    var buttons = document.querySelectorAll(".game-mode-btn");
+    buttons.forEach(function (button) {
+      button.classList.remove("selected");
     });
   }
 
@@ -275,11 +389,11 @@ var Gamification = (function () {
           alert("Complete all TODOs first to unlock game features!");
           return;
         }
-        
+
         // Add selected state to single player button
         clearButtonSelection();
         singlePlayerBtn.classList.add("selected");
-        
+
         startSinglePlayerGame();
       });
     }
@@ -292,11 +406,11 @@ var Gamification = (function () {
           alert("Complete all TODOs first to unlock game features!");
           return;
         }
-        
+
         // Add selected state to multiplayer button
         clearButtonSelection();
         hostGameBtn.classList.add("selected");
-        
+
         Multiplayer.startLocalMultiplayer();
       });
     }
@@ -395,12 +509,12 @@ var Gamification = (function () {
   // Get the actual effective radius of a circle, accounting for scaling
   function getActualRadius(circle) {
     if (!circle) return 0;
-    
+
     // For player circles, use the radius property directly (it's updated when they grow)
     if (circle === player1 || circle === player2) {
       return circle.radius || 15;
     }
-    
+
     // For regular circles, use the radius property with proper fallback
     // Original circles have radius between 5-20, so use 12 as a reasonable fallback
     return circle.radius || 12;
@@ -410,13 +524,13 @@ var Gamification = (function () {
   function isInvincibilityActive() {
     if (!gameStartTime || !gameStarted) return false;
     var currentTime = Date.now();
-    return (currentTime - gameStartTime) < INVINCIBILITY_DURATION;
+    return currentTime - gameStartTime < INVINCIBILITY_DURATION;
   }
 
   // Update visual effects for invincibility period
   function updateInvincibilityVisuals() {
     var isInvincible = isInvincibilityActive();
-    
+
     // Simple approach: modify player alpha to show invincibility
     if (player1) {
       if (isInvincible) {
@@ -525,59 +639,59 @@ var Gamification = (function () {
     }
   }
 
-// Update player 1 movement (WASD keys)
-function updatePlayer1() {
-  if (!player1) return;
+  // Update player 1 movement (WASD keys)
+  function updatePlayer1() {
+    if (!player1) return;
 
-  // Check for WASD key presses
-  if (keys["w"]) {
-    player1.y -= 3;
-  }
-  if (keys["s"]) {
-    player1.y += 3;
-  }
-  if (keys["a"]) {
-    player1.x -= 3;
-  }
-  if (keys["d"]) {
-    player1.x += 3;
-  }
+    // Check for WASD key presses
+    if (keys["w"]) {
+      player1.y -= 3;
+    }
+    if (keys["s"]) {
+      player1.y += 3;
+    }
+    if (keys["a"]) {
+      player1.x -= 3;
+    }
+    if (keys["d"]) {
+      player1.x += 3;
+    }
 
-  // Keep player in bounds (wrap around screen)
-  game.checkCirclePosition(player1);
-}
-
-// Update player 2 movement (Arrow keys)
-function updatePlayer2() {
-  if (!player2) return;
-
-  // Check for arrow key presses (using lowercase as set by keyboard handler)
-  if (keys["arrowup"]) {
-    player2.y -= 3;
-  }
-  if (keys["arrowdown"]) {
-    player2.y += 3;
-  }
-  if (keys["arrowleft"]) {
-    player2.x -= 3;
-  }
-  if (keys["arrowright"]) {
-    player2.x += 3;
+    // Keep player in bounds (wrap around screen)
+    game.checkCirclePosition(player1);
   }
 
-  // Keep player in bounds (wrap around screen)
-  game.checkCirclePosition(player2);
+  // Update player 2 movement (Arrow keys)
+  function updatePlayer2() {
+    if (!player2) return;
 
-  // Update multiplayer data
-  if (Multiplayer.isMultiplayer) {
-    Multiplayer.updatePlayer2({
-      x: player2.x,
-      y: player2.y,
-      radius: player2.radius,
-      score: player2Score,
-    });
+    // Check for arrow key presses (using lowercase as set by keyboard handler)
+    if (keys["arrowup"]) {
+      player2.y -= 3;
+    }
+    if (keys["arrowdown"]) {
+      player2.y += 3;
+    }
+    if (keys["arrowleft"]) {
+      player2.x -= 3;
+    }
+    if (keys["arrowright"]) {
+      player2.x += 3;
+    }
+
+    // Keep player in bounds (wrap around screen)
+    game.checkCirclePosition(player2);
+
+    // Update multiplayer data
+    if (Multiplayer.isMultiplayer) {
+      Multiplayer.updatePlayer2({
+        x: player2.x,
+        y: player2.y,
+        radius: player2.radius,
+        score: player2Score,
+      });
+    }
   }
-}
 
   // Absorb a circle and grow the player
   function absorb(absorber, absorbed, index, playerIndex) {
@@ -730,10 +844,10 @@ function updatePlayer2() {
 
       // Reset game mode selection buttons
       var singleInstructions = document.getElementById(
-        "singlePlayerInstructions"
+        "singlePlayerInstructions",
       );
       var multiInstructions = document.getElementById(
-        "multiplayerInstructions"
+        "multiplayerInstructions",
       );
       var gameModeDiv = document.getElementById("gameMode");
 
@@ -755,65 +869,65 @@ function updatePlayer2() {
     }
   }
 
-// Start single player game with countdown
-function startSinglePlayerGame() {
-  // Prevent multiple countdowns
-  if (countdownInProgress || gameStarted) {
-    return;
-  }
-  
-  gameMode = "single";
-  document.getElementById("instructions").style.display = "none";
-  showCountdown(function () {
-    gameStarted = true;
-    gameStartTime = Date.now(); // Set invincibility start time
-    createPlayer1();
-  });
-}
-
-// Start multiplayer game with countdown
-function startMultiplayerGame() {
-  // Prevent multiple countdowns
-  if (countdownInProgress || gameStarted) {
-    return;
-  }
-  
-  gameMode = "multiplayer";
-  document.getElementById("instructions").style.display = "none";
-
-  showCountdown(function () {
-    gameStarted = true;
-    gameStartTime = Date.now(); // Set invincibility start time
-    gameTimer = 60;
-
-    // Show multiplayer score display
-    var multiplayerScore = document.getElementById("multiplayerScore");
-    if (multiplayerScore) {
-      multiplayerScore.style.display = "block";
+  // Start single player game with countdown
+  function startSinglePlayerGame() {
+    // Prevent multiple countdowns
+    if (countdownInProgress || gameStarted) {
+      return;
     }
 
-    // Players are already created in onConnected callback
+    gameMode = "single";
+    document.getElementById("instructions").style.display = "none";
+    showCountdown(function () {
+      gameStarted = true;
+      gameStartTime = Date.now(); // Set invincibility start time
+      createPlayer1();
+    });
+  }
 
-    // Start countdown timer
-    timerInterval = setInterval(function () {
-      gameTimer--;
-      var gameTimerElement = document.getElementById("gameTimer");
-      if (gameTimerElement) {
-        gameTimerElement.textContent = "Time: " + gameTimer + "s";
+  // Start multiplayer game with countdown
+  function startMultiplayerGame() {
+    // Prevent multiple countdowns
+    if (countdownInProgress || gameStarted) {
+      return;
+    }
+
+    gameMode = "multiplayer";
+    document.getElementById("instructions").style.display = "none";
+
+    showCountdown(function () {
+      gameStarted = true;
+      gameStartTime = Date.now(); // Set invincibility start time
+      gameTimer = 60;
+
+      // Show multiplayer score display
+      var multiplayerScore = document.getElementById("multiplayerScore");
+      if (multiplayerScore) {
+        multiplayerScore.style.display = "block";
       }
 
-      if (gameTimer <= 0) {
-        endMultiplayerGame();
-      }
-    }, 1000);
-  });
-}
+      // Players are already created in onConnected callback
 
-// End multiplayer game
-function endMultiplayerGame(reason) {
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
+      // Start countdown timer
+      timerInterval = setInterval(function () {
+        gameTimer--;
+        var gameTimerElement = document.getElementById("gameTimer");
+        if (gameTimerElement) {
+          gameTimerElement.textContent = "Time: " + gameTimer + "s";
+        }
+
+        if (gameTimer <= 0) {
+          endMultiplayerGame();
+        }
+      }, 1000);
+    });
+  }
+
+  // End multiplayer game
+  function endMultiplayerGame(reason) {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
     }
 
     var message = reason || "Time's up!";
@@ -906,48 +1020,49 @@ function endMultiplayerGame(reason) {
   }
 
   // Show 3-second countdown before game starts
-function showCountdown(callback) {
-  // Set countdown in progress flag
-  countdownInProgress = true;
-  
-  var instructions = document.getElementById("instructions");
-  var gameModeDiv = document.getElementById("gameMode");
-  
-  // Remove any existing countdown div to prevent duplicates
-  var existingCountdown = document.getElementById("countdown");
-  if (existingCountdown) {
-    existingCountdown.remove();
-  }
-  
-  var countdownDiv = document.createElement("div");
-  countdownDiv.id = "countdown";
-  countdownDiv.style.cssText = "font-size: 48px; color: #FFD700; text-align: center;";
+  function showCountdown(callback) {
+    // Set countdown in progress flag
+    countdownInProgress = true;
 
-  if(gameModeDiv) gameModeDiv.style.display = 'none';
-  instructions.style.display = 'block';
-  instructions.appendChild(countdownDiv);
+    var instructions = document.getElementById("instructions");
+    var gameModeDiv = document.getElementById("gameMode");
 
-  var countdown = 3;
-  countdownDiv.textContent = countdown;
-
-  var countdownInterval = setInterval(function() {
-    countdown--;
-    if (countdown > 0) {
-      countdownDiv.textContent = countdown;
-    } else {
-      clearInterval(countdownInterval);
-      instructions.style.display = "none";
-      if (instructions.contains(countdownDiv)) {
-        instructions.removeChild(countdownDiv);
-      }
-      if(gameModeDiv) gameModeDiv.style.display = 'block';
-      
-      // Reset countdown flag before calling callback
-      countdownInProgress = false;
-      callback();
+    // Remove any existing countdown div to prevent duplicates
+    var existingCountdown = document.getElementById("countdown");
+    if (existingCountdown) {
+      existingCountdown.remove();
     }
-  }, 1000);
-}
+
+    var countdownDiv = document.createElement("div");
+    countdownDiv.id = "countdown";
+    countdownDiv.style.cssText =
+      "font-size: 48px; color: #FFD700; text-align: center;";
+
+    if (gameModeDiv) gameModeDiv.style.display = "none";
+    instructions.style.display = "block";
+    instructions.appendChild(countdownDiv);
+
+    var countdown = 3;
+    countdownDiv.textContent = countdown;
+
+    var countdownInterval = setInterval(function () {
+      countdown--;
+      if (countdown > 0) {
+        countdownDiv.textContent = countdown;
+      } else {
+        clearInterval(countdownInterval);
+        instructions.style.display = "none";
+        if (instructions.contains(countdownDiv)) {
+          instructions.removeChild(countdownDiv);
+        }
+        if (gameModeDiv) gameModeDiv.style.display = "block";
+
+        // Reset countdown flag before calling callback
+        countdownInProgress = false;
+        callback();
+      }
+    }, 1000);
+  }
 
   // Show connection success feedback
   function showConnectionSuccess() {
@@ -1007,7 +1122,7 @@ function showCountdown(callback) {
 
     // Add to the canvas container
     var canvasContainer = document.querySelector(
-      'div[style*="position: relative"]'
+      'div[style*="position: relative"]',
     );
     if (canvasContainer) {
       canvasContainer.appendChild(statusDiv);
