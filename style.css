@@ -1112,13 +1112,16 @@ body {
 body {
   background: var(--pri-color);
   color: #ffdd00;
-
   font-family: var(--font);
-  src: var(--font-src);
-  background-image: url("assets/checkerbg.png");
-  background-repeat: repeat;
-  background-size: 116px;
-  image-rendering: pixelated;
+
+  background-image: conic-gradient( /*weirdest fix ever but it works on mobile so i don't give a fuh*/
+    #000 25%,
+    #FF6600 0 50%,
+    #000 0 75%,
+    #FF6600 0
+  );
+
+  background-size: 116px 116px;
 }
 
 /* =========================================================
