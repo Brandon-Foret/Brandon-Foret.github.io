@@ -1,5 +1,5 @@
-const WEBHOOK_URL =
-  "https://discord.com/api/webhooks/1547277222401015838/4EfaP8FtQQljjE6zI3Pu5y3TdZ-bql7YjXFLFgWmFdJPt2ao6sB_MivsCij29G_pEu7W"; // ik this is really insecure but i kinda dont care much, its supposed too just be a message system anyway, please dont nuke it <3
+const API_URL =
+  "https://yap.kitty.miloashwolf.gay"; //i fixed it yw :3
 
 const messageInput = document.getElementById("message");
 const sendButton = document.getElementById("sendButton");
@@ -21,7 +21,7 @@ async function sendMessage() {
   sendButton.textContent = "Sending...";
 
   try {
-    const response = await fetch(WEBHOOK_URL, {
+    const response = await fetch(API_URL, {
       method: "POST",
 
       headers: {
@@ -29,7 +29,7 @@ async function sendMessage() {
       },
 
       body: JSON.stringify({
-        content: message,
+        message: message,
       }),
     });
 
