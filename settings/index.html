@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="iframe-page">
+
+  <main>
+    <div class="settings">
+
+      <div class="settings-header">
+        <h1>Settings</h1>
+      </div>
+
+      <div class="settings-section">
+
+        <h2>Appearance</h2>
+
+        <div class="setting">
+
+          <div class="setting-info">
+            <span class="setting-name">Background</span>
+            <span class="setting-description">
+              Choose a background for the page.
+            </span>
+          </div>
+
+          <select id="backgroundSelect">
+            <option value="default">Default (Checker Board)</option>
+            <option value="solid">Solid Color</option>
+            <option value="kittyWallpaper">Kitty Wallpaper</option>
+          </select>
+
+        </div>
+
+        <!-- Solid color picker -->
+
+        <div class="setting" id="colorSetting">
+
+          <div class="setting-info">
+            <span class="setting-name">Background Color</span>
+            <span class="setting-description">
+              Choose a solid background color.
+            </span>
+          </div>
+
+          <input type="color" id="backgroundColor" value="#121212">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

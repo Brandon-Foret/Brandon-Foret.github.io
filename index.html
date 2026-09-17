@@ -52,9 +52,15 @@
         <div class="app-name">Send Me A Message!</div>
       </button>
 
-      <button class="desktop-app" data-url="birthday-bash/index.html" data-title="Birthday Bash">
-        <div class="app-icon">🎉</div>
-        <div class="app-name">Birthday Bash 2026!</div>
+      <button class="desktop-app" data-url="settings/index.html" data-title="Settings">
+        <div class="app-icon">⚙️</div>
+        <div class="app-name">Settings</div>
+      </button>
+
+      <button class="desktop-app" data-url="archived/index.html" data-title="Archive"
+        style="position: fixed; bottom: 90px; right: 20px;">
+        <div class="app-icon">🗃️</div>
+        <div class="app-name">Archive</div>
       </button>
     </div>
 
@@ -94,6 +100,10 @@
         Send A Message!
       </button>
 
+      <button class="start-item" data-url="archived/index.html" data-title="Archive">
+        Archive
+      </button>
+
     </div>
 
     <div id="taskbar">
@@ -110,6 +120,201 @@
 
 
   <script src="script.js"></script>
+
+  <script>
+
+    /* =========================================
+    DEFAULT THEME
+    ========================================= */
+
+    const defaultTheme = {
+      type: "default"
+    };
+
+    /* =========================================
+    APPLY BACKGROUND
+    ========================================= */
+
+    function applyBackground(theme) {
+
+      if (!theme) {
+        theme = defaultTheme;
+      }
+
+      /* -----------------------------------------
+      DEFAULT THEME
+      ----------------------------------------- */
+
+      if (theme.type === "default") {
+
+        document.body.style.backgroundColor =
+          "var(--pri-color)";
+
+        document.body.style.backgroundImage =
+          "conic-gradient(#000 25%, #ff6600 0 50%, #000 0 75%, #ff6600 0)";
+
+        document.body.style.backgroundPosition =
+          "58px 0px";
+
+        document.body.style.backgroundSize =
+          "116px 116px";
+
+        document.body.style.backgroundRepeat =
+          "repeat";
+
+      }
+
+      /* -----------------------------------------
+      SOLID COLOR
+      ----------------------------------------- */
+
+      else if (theme.type === "solid") {
+
+        document.body.style.backgroundColor =
+          theme.color || "#121212";
+
+        document.body.style.backgroundImage =
+          "none";
+
+        document.body.style.backgroundPosition =
+          "initial";
+
+        document.body.style.backgroundSize =
+          "initial";
+
+        document.body.style.backgroundRepeat =
+          "initial";
+
+      }
+
+      /* -----------------------------------------
+      IMAGE
+      ----------------------------------------- */
+
+      else if (theme.type === "image") {
+
+        document.body.style.backgroundColor =
+          "transparent";
+
+        document.body.style.backgroundImage =
+          `url("${theme.image}")`;
+
+        document.body.style.backgroundPosition =
+          "center";
+
+        document.body.style.backgroundSize =
+          "cover";
+
+        document.body.style.backgroundRepeat =
+          "no-repeat";
+
+      }
+
+    }
+
+    /* =========================================
+    SAVE THEME
+    ========================================= */
+
+    function saveTheme(theme) {
+
+      localStorage.setItem(
+        "siteBackground",
+        JSON.stringify(theme)
+      );
+
+    }
+
+    /* =========================================
+    GET SAVED THEME
+    ========================================= */
+
+    function getSavedTheme() {
+
+      const savedTheme =
+        localStorage.getItem("siteBackground");
+
+      if (!savedTheme) {
+        return defaultTheme;
+      }
+
+      try {
+
+        return JSON.parse(savedTheme);
+
+      } catch (error) {
+
+        console.error(
+          "Could not read saved theme:",
+          error
+        );
+
+        return defaultTheme;
+
+      }
+
+    }
+
+    /* =========================================
+    LOAD THEME WHEN WEBSITE OPENS
+    ========================================= */
+
+    const startupTheme = getSavedTheme();
+
+    applyBackground(startupTheme);
+
+    /* =========================================
+    MESSAGES FROM SETTINGS IFRAME
+    ========================================= */
+
+    window.addEventListener("message", function (event) {
+
+      if (!event.data) {
+        return;
+      }
+
+      /* -----------------------------------------
+      CHANGE BACKGROUND
+      ----------------------------------------- */
+
+      if (event.data.type === "changeBackground") {
+
+        const theme = event.data.theme;
+
+        if (!theme) {
+          return;
+        }
+
+        saveTheme(theme);
+
+        applyBackground(theme);
+
+        return;
+
+      }
+
+      /* -----------------------------------------
+      SETTINGS ASKED FOR CURRENT THEME
+      ----------------------------------------- */
+
+      if (event.data.type === "requestBackground") {
+
+        const currentTheme =
+          getSavedTheme();
+
+
+        event.source.postMessage({
+
+          type: "currentBackground",
+
+          theme: currentTheme
+
+        }, "*");
+
+      }
+
+    });
+  </script>
 
 </body>
 

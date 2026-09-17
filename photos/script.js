@@ -513,6 +513,12 @@ const photoExplorerFileSystem = {
                   imagePath: "VRChat/kitty-hideout/birthday-bash/bashbadge.PNG",
                   title: "Badge For Birthday Bash: September 2026",
                 },
+                {
+                  name: "20 Minutes Until Start!",
+                  type: "image",
+                  imagePath:
+                    "VRChat/kitty-hideout/birthday-bash/VRChat_2026-09-16_18-43-58.300_1920x1080.PNG",
+                },
               ],
             },
             {

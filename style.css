@@ -1114,11 +1114,11 @@ body {
   color: #ffdd00;
   font-family: var(--font);
 
-  background-image: conic-gradient( /*weirdest fix ever but it works on mobile so i don't give a fuh*/
-    #000 25%,
-    #FF6600 0 50%,
+  background-image: conic-gradient(
+    /*weirdest fix ever but it works on mobile so i don't give a fuh*/ #000 25%,
+    #ff6600 0 50%,
     #000 0 75%,
-    #FF6600 0
+    #ff6600 0
   );
   background-position: 58px 0px; /*pixel for pixel! (my ocd is weird okay)*/
   background-size: 116px 116px;
