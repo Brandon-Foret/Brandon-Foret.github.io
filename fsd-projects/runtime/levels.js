@@ -1,76 +1,352 @@
-// === LEVELS DEFINITIONS ===
-// TODOs 7, 11, and 12 will require changes to this section
 const LEVELS = [
   {
-    name: "Level 1",
+    name: "Level 1: Neon Run",
     speed: 2,
+
     gameObjects: [
-      { type: "obstacle", kind: "spikes", x: 1600, y: groundY },
-      { type: "enemy", kind: "bug", x: 1600, y: groundY },
-      { type: "powerup", kind: "healthUp", x: 1600, y: groundY - 50 },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 500,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 950,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 1400,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 700,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1150,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1550,
+        y: groundY,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 850,
+        y: groundY - 100,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 1350,
+        y: groundY - 120,
+      },
       {
         type: "platform",
         kind: "basicPlatform",
-        x: 800,
+        x: 600,
         y: groundY - 100,
-        contactHealthChange: -5,
       },
-      { type: "platform", kind: "basicPlatform", x: 600, y: groundY - 60 },
       {
         type: "platform",
         kind: "basicPlatform",
         x: 1000,
-        y: groundY - 40,
-        contactHealthChange: -10,
+        y: groundY - 150,
       },
       {
         type: "platform",
         kind: "basicPlatform",
-        x: 1200,
+        x: 1300,
         y: groundY - 80,
-        hp: 0,
       },
-
-      { type: "goal", kind: "flag", x: 2000, y: groundY },
+      {
+        type: "goal",
+        kind: "flag",
+        x: 2000,
+        y: groundY,
+      },
     ],
   },
+
   {
-    name: "Level 2",
+    name: "Level 2: Neon Heights",
     speed: 3,
+
     gameObjects: [
-      { type: "obstacle", kind: "spikes", x: 1600, y: groundY },
-      { type: "enemy", kind: "bug", x: 1600, y: groundY },
-      { type: "powerup", kind: "healthUp", x: 1600, y: groundY - 50 },
       {
-        type: "platform",
-        kind: "basicPlatform",
-        x: 800,
-        y: groundY - 100,
-        contactHealthChange: -5,
+        type: "obstacle",
+        kind: "spikes",
+        x: 450,
+        y: groundY,
       },
-      { type: "platform", kind: "basicPlatform", x: 600, y: groundY - 60 },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 750,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 1050,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 1400,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 1750,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 600,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 900,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1200,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1500,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1800,
+        y: groundY,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 700,
+        y: groundY - 120,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 1150,
+        y: groundY - 150,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 1600,
+        y: groundY - 100,
+      },
       {
         type: "platform",
         kind: "basicPlatform",
-        x: 1000,
-        y: groundY - 40,
-        contactHealthChange: -10,
+        x: 500,
+        y: groundY - 100,
+      },
+      {
+        type: "platform",
+        kind: "basicPlatform",
+        x: 850,
+        y: groundY - 150,
       },
       {
         type: "platform",
         kind: "basicPlatform",
         x: 1200,
-        y: groundY - 80,
-        hp: 0,
+        y: groundY - 100,
+      },
+      {
+        type: "platform",
+        kind: "basicPlatform",
+        x: 1550,
+        y: groundY - 170,
+      },
+      {
+        type: "goal",
+        kind: "flag",
+        x: 2200,
+        y: groundY,
+      },
+    ],
+  },
+
+  {
+    name: "Level 3: Final Overdrive",
+    speed: 4,
+
+    gameObjects: [
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 400,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 650,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 900,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 1200,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 1450,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 1750,
+        y: groundY,
+      },
+      {
+        type: "obstacle",
+        kind: "spikes",
+        x: 2050,
+        y: groundY,
       },
 
-      { type: "goal", kind: "flag", x: 2250, y: groundY },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 550,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 800,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1100,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1350,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1650,
+        y: groundY,
+      },
+      {
+        type: "enemy",
+        kind: "bug",
+        x: 1950,
+        y: groundY,
+      },
+
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 700,
+        y: groundY - 100,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 1050,
+        y: groundY - 150,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 1500,
+        y: groundY - 120,
+      },
+      {
+        type: "powerup",
+        kind: "healthUp",
+        x: 1850,
+        y: groundY - 160,
+      },
+      {
+        type: "platform",
+        kind: "basicPlatform",
+        x: 450,
+        y: groundY - 100,
+      },
+      {
+        type: "platform",
+        kind: "basicPlatform",
+        x: 800,
+        y: groundY - 150,
+      },
+      {
+        type: "platform",
+        kind: "basicPlatform",
+        x: 1150,
+        y: groundY - 100,
+      },
+      {
+        type: "platform",
+        kind: "basicPlatform",
+        x: 1500,
+        y: groundY - 180,
+      },
+      {
+        type: "platform",
+        kind: "basicPlatform",
+        x: 1850,
+        y: groundY - 120,
+      },
+      {
+        type: "goal",
+        kind: "flag",
+        x: 2400,
+        y: groundY,
+      },
     ],
   },
 ];
 
 let currentLevel = LEVELS[0];
 let currentLevelIndex = 0;
+
 // === END LEVELS DEFINITIONS ===
 
 // === DEFAULT VALUES FOR EACH "type" AND "kind" OF OBJECT (STUDENT-EDITABLE) ===
