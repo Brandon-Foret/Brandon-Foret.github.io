@@ -20,9 +20,9 @@
 
     <div id="desktop-icons">
 
-      <button class="desktop-app" data-url="home.html" data-title="Home">
-        <div class="app-icon">🏠</div>
-        <div class="app-name">Home</div>
+      <button class="desktop-app" data-url="about/index.html" data-title="About">
+        <div class="app-icon">🍊</div>
+        <div class="app-name">About</div>
       </button>
 
       <button class="desktop-app" data-url="portfolio.html" data-title="Portfolio">
@@ -62,6 +62,11 @@
         <div class="app-name">Settings</div>
       </button>
 
+      <button class="desktop-app" data-url="fnf/index.html" data-title="Friday Night Funkin'">
+        <img class="app-icon" src="fnf/favicon.png">
+        <div class="app-name">Friday Night Funkin'</div>
+      </button>
+
       <button class="desktop-app" data-url="archived/index.html" data-title="Archive"
         style="position: fixed; bottom: 90px; right: 20px;">
         <div class="app-icon">🗃️</div>
@@ -81,8 +86,8 @@
         Kitty OS
       </div>
 
-      <button class="start-item" data-url="home.html" data-title="Home">
-        Home
+      <button class="start-item" data-url="about/index.html" data-title="About">
+        About
       </button>
 
       <button class="start-item" data-url="portfolio.html" data-title="Blog">
@@ -135,28 +140,15 @@
   <script src="script.js"></script>
 
   <script>
-
-    /* =========================================
-    DEFAULT THEME
-    ========================================= */
-
     const defaultTheme = {
       type: "default"
     };
-
-    /* =========================================
-    APPLY BACKGROUND
-    ========================================= */
 
     function applyBackground(theme) {
 
       if (!theme) {
         theme = defaultTheme;
       }
-
-      /* -----------------------------------------
-      DEFAULT THEME
-      ----------------------------------------- */
 
       if (theme.type === "default") {
 
@@ -177,10 +169,6 @@
 
       }
 
-      /* -----------------------------------------
-      SOLID COLOR
-      ----------------------------------------- */
-
       else if (theme.type === "solid") {
 
         document.body.style.backgroundColor =
@@ -199,10 +187,6 @@
           "initial";
 
       }
-
-      /* -----------------------------------------
-      IMAGE
-      ----------------------------------------- */
 
       else if (theme.type === "image") {
 
@@ -225,22 +209,12 @@
 
     }
 
-    /* =========================================
-    SAVE THEME
-    ========================================= */
-
     function saveTheme(theme) {
-
       localStorage.setItem(
         "siteBackground",
         JSON.stringify(theme)
       );
-
     }
-
-    /* =========================================
-    GET SAVED THEME
-    ========================================= */
 
     function getSavedTheme() {
 
@@ -268,27 +242,15 @@
 
     }
 
-    /* =========================================
-    LOAD THEME WHEN WEBSITE OPENS
-    ========================================= */
-
     const startupTheme = getSavedTheme();
 
     applyBackground(startupTheme);
-
-    /* =========================================
-    MESSAGES FROM SETTINGS IFRAME
-    ========================================= */
 
     window.addEventListener("message", function (event) {
 
       if (!event.data) {
         return;
       }
-
-      /* -----------------------------------------
-      CHANGE BACKGROUND
-      ----------------------------------------- */
 
       if (event.data.type === "changeBackground") {
 
@@ -305,10 +267,6 @@
         return;
 
       }
-
-      /* -----------------------------------------
-      SETTINGS ASKED FOR CURRENT THEME
-      ----------------------------------------- */
 
       if (event.data.type === "requestBackground") {
 

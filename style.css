@@ -3,24 +3,7 @@
 }
 
 /* =========================================================
-   IFRAME
-   ========================================================= */
-
-#main-frame {
-  width: 100%;
-  height: 100%;
-  flex: 1 1 auto;
-
-  min-height: 0;
-
-  border: none;
-  display: block;
-
-  background: var(--pri-color);
-}
-
-/* =========================================================
-   PAGE / BODY / STYLING
+   FONTS / VARIABLES
    ========================================================= */
 
 @font-face {
@@ -33,13 +16,17 @@
   --font: "LDFComicSans";
 }
 
+/* =========================================================
+   GLOBAL PAGE
+   ========================================================= */
+
 html,
 body {
   margin: 0;
   padding: 0;
-
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -51,8 +38,57 @@ body {
 
   background: var(--pri-color);
   color: #ffdd00;
-
   font-family: var(--font);
+
+  background-image: conic-gradient(
+    /* weirdest fix ever but it works on mobile so i don't give a fuh */ #000
+      25%,
+    #ff6600 0 50%,
+    #000 0 75%,
+    #ff6600 0
+  );
+
+  background-position: 58px 0px; /* pixel for pixel! (my ocd is weird okay) */
+  background-size: 116px 116px;
+}
+
+/* =========================================================
+   GLOBAL SCROLLBARS
+   ========================================================= */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #120052 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #120052;
+  border-radius: 10px;
+}
+
+/* =========================================================
+   IFRAME
+   ========================================================= */
+
+#main-frame {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+
+  border: none;
+  display: block;
+
+  background: var(--pri-color);
 }
 
 /* =========================================================
@@ -67,14 +103,12 @@ body {
   padding: 8px;
 
   background: #1a1a2e;
-
   border-radius: 15px;
 
   display: flex;
   flex-direction: column;
 
   overflow: hidden;
-
   position: relative;
 }
 
@@ -84,18 +118,15 @@ body {
 
 nav {
   flex: 0 0 5%;
-
   width: 100%;
 
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 
   padding: 0 1.5%;
 
   background: #1a1a2e;
-
   border-radius: 8px 8px 0 0;
 }
 
@@ -103,11 +134,9 @@ nav h1 {
   margin: 0;
 
   font-size: clamp(0.65rem, 0.7vw, 0.8rem);
-
   font-weight: 700;
 
   text-transform: uppercase;
-
   letter-spacing: 0.2em;
 
   color: var(--pri-color);
@@ -133,17 +162,13 @@ nav h1 {
   display: block;
 
   color: #a8b2d8;
-
   text-decoration: none;
-
   font-family: var(--font);
-  src: var(--font-src);
-  font-size: clamp(0.7rem, 0.75vw, 0.85rem);
 
+  font-size: clamp(0.7rem, 0.75vw, 0.85rem);
   font-weight: 500;
 
   padding: 4px 9px;
-
   border-radius: 6px;
 
   transition:
@@ -157,7 +182,6 @@ nav h1 {
 
 .nav-li a:hover {
   background: var(--pri-color);
-
   color: #120052;
 }
 
@@ -180,20 +204,16 @@ nav h1 {
 
 main {
   flex: 1 1 auto;
-
   width: 100%;
-
   min-height: 0;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   padding: 2% 3%;
 
   background: var(--pri-color);
-
   border-radius: 0 0 8px 8px;
 
   overflow: hidden;
@@ -207,9 +227,7 @@ main {
   width: min(100%, 600px);
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
@@ -220,13 +238,10 @@ main {
   margin: 0;
 
   font-size: clamp(0.7rem, 1vw, 0.9rem);
-
   color: #ffdd00;
 
   text-transform: uppercase;
-
   letter-spacing: 0.15em;
-
   line-height: 1.4;
 }
 
@@ -236,11 +251,9 @@ main {
 
 .sidebar-img {
   width: clamp(180px, 28vw, 360px);
-
   height: auto;
 
   aspect-ratio: 3 / 4;
-
   object-fit: contain;
 
   display: block;
@@ -260,27 +273,21 @@ main {
 
 #interests {
   margin-top: 0;
-
   width: 100%;
 }
 
 #interests h3 {
   margin: 0 0 10px;
+  padding: 0;
 
   font-size: clamp(0.65rem, 0.8vw, 0.75rem);
-
   font-weight: 700;
 
   text-transform: uppercase;
-
   letter-spacing: 0.2em;
 
-  padding: 0;
-
   display: flex;
-
   flex-wrap: wrap;
-
   justify-content: center;
 
   color: #ffd500;
@@ -293,9 +300,7 @@ main {
   padding: 0;
 
   display: flex;
-
   flex-wrap: wrap;
-
   justify-content: center;
 
   gap: 6px;
@@ -305,15 +310,12 @@ main {
   color: #000000;
 
   font-size: clamp(0.7rem, 0.9vw, 1rem);
-
   font-weight: 600;
 
   padding: 7px 14px;
 
   background: #ff6f00;
-
   border: 2px solid #120052;
-
   border-radius: 100px;
 
   transition:
@@ -326,9 +328,7 @@ main {
 
 #interests li:hover {
   background: #120052;
-
   color: #fff;
-
   border-color: #000;
 
   transform: translateY(-2px);
@@ -342,7 +342,6 @@ main {
   background: var(--pri-color);
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -353,9 +352,7 @@ main {
   width: 100%;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
@@ -366,13 +363,10 @@ main {
   margin: 0;
 
   color: #ffdd00;
-
   font-family: var(--font);
-  src: var(--font-src);
+
   font-size: clamp(3rem, 7vw, 5rem);
-
   font-weight: 700;
-
   line-height: 1;
 
   text-align: center;
@@ -380,9 +374,7 @@ main {
 
 .link-buttons {
   display: flex;
-
   flex-wrap: wrap;
-
   justify-content: center;
   align-items: center;
 
@@ -391,28 +383,22 @@ main {
 
 .link-button {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
   padding: 7px 14px;
 
   background: #ff6f00;
-
   border: 2px solid #120052;
-
   border-radius: 100px;
 
   color: #000000;
-
   font-family: var(--font);
-  src: var(--font-src);
-  font-size: clamp(0.7rem, 0.9vw, 1rem);
 
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
   font-weight: 600;
 
   text-decoration: none;
-
   white-space: nowrap;
 
   cursor: pointer;
@@ -430,9 +416,7 @@ main {
 
 .link-button:hover {
   background: #120052;
-
   color: #ffffff;
-
   border-color: #000000;
 
   transform: translateY(-2px);
@@ -442,7 +426,6 @@ main {
 
 .link-button:active {
   background: #120052;
-
   color: #ffffff;
 
   transform: translateY(0);
@@ -450,11 +433,9 @@ main {
 
 .link-button:focus {
   color: #000000;
-
   text-decoration: none;
 
   outline: 2px solid #ffdd00;
-
   outline-offset: 2px;
 }
 
@@ -464,7 +445,6 @@ main {
 
 .blog-main {
   align-items: flex-start;
-
   justify-content: center;
 
   overflow-y: auto;
@@ -473,25 +453,19 @@ main {
   padding: 45px 6% 70px;
 
   background: var(--pri-color);
-
-  scrollbar-color: #120052 var(--pri-color);
 }
 
 .blog-container {
   width: min(100%, 900px);
-
   margin: 0 auto;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: stretch;
 }
 
 .blog-header {
   margin-bottom: 45px;
-
   padding-bottom: 30px;
 
   border-bottom: 3px solid #120052;
@@ -501,31 +475,24 @@ main {
   margin: 0 0 12px;
 
   color: #120052;
-
   font-family: var(--font);
-  src: var(--font-src);
+
   font-size: clamp(2rem, 5vw, 4rem);
-
   line-height: 1;
-
   font-weight: 900;
 
   text-transform: uppercase;
-
   letter-spacing: -0.04em;
 }
 
 .blog-header p {
   max-width: 650px;
-
   margin: 0;
 
   color: #120052;
 
   font-size: clamp(0.8rem, 1.3vw, 1rem);
-
   line-height: 1.6;
-
   font-weight: 600;
 }
 
@@ -533,13 +500,11 @@ main {
   width: 100%;
 
   display: flex;
-
   flex-direction: column;
 }
 
 .blog-post {
   padding: 0 0 42px;
-
   margin-bottom: 42px;
 
   border-bottom: 2px solid rgba(18, 0, 82, 0.45);
@@ -555,11 +520,9 @@ main {
   color: #120052;
 
   font-size: 0.72rem;
-
   font-weight: 900;
 
   letter-spacing: 0.18em;
-
   text-transform: uppercase;
 }
 
@@ -567,9 +530,7 @@ main {
   margin: 0 0 7px;
 
   font-size: clamp(1.5rem, 3vw, 2.4rem);
-
   line-height: 1.05;
-
   font-weight: 900;
 
   letter-spacing: -0.02em;
@@ -577,7 +538,6 @@ main {
 
 .blog-post h3 a {
   color: #120052;
-
   text-decoration: none;
 
   transition:
@@ -603,27 +563,21 @@ main {
   color: #3b235f;
 
   font-size: 0.72rem;
-
   font-weight: 700;
 
   text-transform: uppercase;
-
   letter-spacing: 0.12em;
 }
 
 .blog-post p {
   max-width: 760px;
-
   margin: 0 0 18px;
 
   color: #120052;
-
   font-family: Arial, sans-serif;
 
   font-size: clamp(0.9rem, 1.2vw, 1.05rem);
-
   font-weight: 600;
-
   line-height: 1.7;
 }
 
@@ -641,19 +595,15 @@ main {
   color: #120052;
 
   font-size: 0.8rem;
-
   font-weight: 900;
 
   text-decoration: none;
-
   text-transform: uppercase;
-
   letter-spacing: 0.08em;
 
   padding: 7px 12px;
 
   border: 2px solid #120052;
-
   border-radius: 5px;
 
   transition:
@@ -668,7 +618,6 @@ main {
 
 .read-more:hover {
   background: #120052;
-
   color: #ffdd00;
 
   transform: translateX(4px);
@@ -676,28 +625,7 @@ main {
 
 .blog-post.expanded .read-more {
   background: #120052;
-
   color: #ffdd00;
-}
-
-/* =========================================================
-   BLOG SCROLLBAR
-   ========================================================= */
-
-.blog-main::-webkit-scrollbar {
-  width: 10px;
-}
-
-.blog-main::-webkit-scrollbar-track {
-  background: var(--pri-color);
-}
-
-.blog-main::-webkit-scrollbar-thumb {
-  background: #120052;
-
-  border-radius: 10px;
-
-  border: 2px solid var(--pri-color);
 }
 
 /* =========================================================
@@ -728,6 +656,604 @@ main {
 }
 
 /* =========================================================
+   IFRAME HOME PAGE
+   ========================================================= */
+
+html:has(body.iframe-page),
+body.iframe-page {
+  width: 100% !important;
+  height: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.iframe-page {
+  min-height: 100% !important;
+
+  display: block !important;
+
+  background: var(--pri-color) !important;
+  background-image: none !important;
+
+  overflow: hidden !important;
+}
+
+/* =========================================================
+   IFRAME HOME MAIN
+   ========================================================= */
+
+body.iframe-page main {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 7% !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 7% !important;
+
+  background: var(--pri-color) !important;
+  border-radius: 0 !important;
+
+  overflow: hidden !important;
+}
+
+/* =========================================================
+   IFRAME HOME CHARACTER
+   ========================================================= */
+
+body.iframe-page .sidebar {
+  width: 34% !important;
+  height: 100% !important;
+
+  flex: 0 0 34% !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.iframe-page .sidebar-img {
+  width: 100% !important;
+  max-width: 410px !important;
+
+  height: auto !important;
+
+  aspect-ratio: 3 / 4 !important;
+  object-fit: contain !important;
+
+  display: block !important;
+
+  border-radius: 16px !important;
+}
+
+/* =========================================================
+   IFRAME HOME CONTENT
+   ========================================================= */
+
+body.iframe-page .content {
+  width: 45% !important;
+  max-width: 520px !important;
+
+  flex: 0 1 45% !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  text-align: center !important;
+
+  gap: 6px !important;
+}
+
+/* =========================================================
+   IFRAME HOME TITLE
+   ========================================================= */
+
+body.iframe-page .content h1 {
+  margin: 0 0 10px !important;
+
+  font-size: clamp(1.9rem, 3.8vw, 2.7rem) !important;
+  line-height: 1.1 !important;
+
+  color: #ffdd00 !important;
+  text-align: center !important;
+}
+
+/* =========================================================
+   IFRAME HOME INTERESTS
+   ========================================================= */
+
+body.iframe-page #interests {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+body.iframe-page #interests h3 {
+  margin: 0 0 10px !important;
+
+  font-size: clamp(0.65rem, 0.85vw, 0.8rem) !important;
+}
+
+body.iframe-page #interests ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+  justify-content: center !important;
+
+  gap: 7px !important;
+}
+
+body.iframe-page #interests li {
+  font-size: clamp(0.75rem, 0.95vw, 0.95rem) !important;
+
+  padding: 7px 14px !important;
+}
+
+/* =========================================================
+   IFRAME BLOG FIX
+   ========================================================= */
+
+body.iframe-page:has(.blog-main) {
+  overflow: hidden !important;
+}
+
+body.iframe-page:has(.blog-main) main.blog-main {
+  height: 100% !important;
+  min-height: 0 !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  display: block !important;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+#desktop {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   DESKTOP APP ICONS
+   ========================================================= */
+
+#desktop-icons {
+  position: absolute;
+
+  top: 20px;
+  left: 20px;
+
+  height: calc(100% - 40px);
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  align-items: center;
+  align-content: flex-start;
+
+  gap: 18px;
+
+  z-index: 1;
+}
+
+.desktop-app {
+  width: 90px;
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px;
+
+  border: 2px solid transparent;
+  border-radius: 7px;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-family: var(--font);
+
+  cursor: pointer;
+  user-select: none;
+
+  text-shadow:
+    2px 2px 0 #120052,
+    -1px -1px 0 #120052,
+    1px -1px 0 #120052,
+    -1px 1px 0 #120052;
+}
+
+.desktop-app:hover {
+  background: rgba(18, 0, 82, 0.35);
+  border-color: rgba(255, 221, 0, 0.8);
+}
+
+.desktop-app:active {
+  background: rgba(18, 0, 82, 0.55);
+}
+
+.app-icon {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 5px;
+
+  font-size: 38px;
+
+  filter: drop-shadow(3px 3px 0 #120052);
+}
+
+.app-name {
+  width: 100%;
+
+  font-size: 0.72rem;
+  font-weight: 900;
+
+  text-align: center;
+  line-height: 1.1;
+
+  word-break: break-word;
+}
+
+/* =========================================================
+   WINDOW AREA
+   ========================================================= */
+
+#window-area {
+  position: absolute;
+  inset: 0;
+
+  padding-bottom: 55px;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   DESKTOP WINDOWS
+   ========================================================= */
+
+.desktop-window {
+  position: absolute;
+
+  width: 600px;
+  height: 450px;
+
+  min-width: 250px;
+  min-height: 150px;
+
+  padding: 8px;
+
+  background: #1a1a2e;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  pointer-events: auto;
+}
+
+.desktop-window.active {
+  outline: 2px solid #ffdd00;
+  outline-offset: 0;
+}
+
+/* =========================================================
+   WINDOW NAVIGATION / TITLE BAR
+   ========================================================= */
+
+.desktop-window nav {
+  flex: 0 0 8.5%;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 1.5%;
+
+  background: #1a1a2e;
+  border-radius: 8px 8px 0 0;
+
+  cursor: grab;
+  user-select: none;
+}
+
+.desktop-window nav:active {
+  cursor: grabbing;
+}
+
+.desktop-window nav h1 {
+  margin: 0;
+
+  font-size: clamp(0.65rem, 0.7vw, 0.8rem);
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+
+  color: var(--pri-color);
+}
+
+/* =========================================================
+   WINDOW RESIZE
+   ========================================================= */
+
+.window-resize-handle {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 16px;
+  height: 16px;
+
+  z-index: 9999;
+
+  cursor: nwse-resize;
+}
+
+/* =========================================================
+   WINDOW CONTROLS
+   ========================================================= */
+
+.window-controls {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+}
+
+.window-control {
+  width: 24px;
+  height: 24px;
+
+  padding: 0;
+
+  border: 2px solid #120052;
+  border-radius: 5px;
+
+  background: #ff6f00;
+  color: #000;
+
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.window-control:hover {
+  background: #ffdd00;
+}
+
+.window-control.close:hover {
+  background: #ff3333;
+  color: #ffffff;
+}
+
+/* =========================================================
+   DESKTOP WINDOW IFRAME
+   ========================================================= */
+
+.desktop-window iframe {
+  width: 100%;
+  height: 100%;
+
+  flex: 1 1 auto;
+  min-height: 0;
+
+  border: none;
+  display: block;
+
+  background: var(--pri-color);
+}
+
+/* =========================================================
+   MINIMIZED / MAXIMIZED
+   ========================================================= */
+
+.desktop-window.minimized {
+  display: none;
+}
+
+.desktop-window.maximized {
+  left: 8px !important;
+  top: 8px !important;
+
+  width: calc(100% - 16px) !important;
+  height: calc(100% - 71px) !important;
+
+  max-width: none;
+
+  border-radius: 8px;
+}
+
+/* =========================================================
+   TASKBAR
+   ========================================================= */
+
+#taskbar {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+  padding: 6px;
+
+  background: #1a1a2e;
+  border-top: 3px solid #120052;
+
+  z-index: 5;
+}
+
+#start-button {
+  height: 38px;
+
+  padding: 0 14px;
+
+  border: 2px solid #120052;
+  border-radius: 6px;
+
+  background: #ff6f00;
+  color: #000000;
+
+  font-family: var(--font);
+  font-size: 0.75rem;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+#start-button:hover {
+  background: #ffdd00;
+}
+
+#taskbar-windows {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  flex: 1;
+  min-width: 0;
+
+  overflow-x: auto;
+}
+
+.taskbar-window {
+  height: 38px;
+
+  min-width: 110px;
+  max-width: 180px;
+
+  padding: 0 12px;
+
+  border: 2px solid #120052;
+  border-radius: 6px;
+
+  background: #ff6f00;
+  color: #000000;
+
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskbar-window:hover {
+  background: #ffdd00;
+}
+
+.taskbar-window.active {
+  background: #ffdd00;
+  color: #120052;
+}
+
+/* =========================================================
+   START MENU
+   ========================================================= */
+
+#start-menu {
+  position: absolute;
+
+  left: 6px;
+  bottom: 61px;
+
+  width: 230px;
+
+  padding: 10px;
+
+  background: #1a1a2e;
+  border-radius: 10px;
+
+  display: none;
+
+  z-index: 100000;
+}
+
+#start-menu.open {
+  display: block;
+}
+
+.start-title {
+  margin: 5px 7px 10px;
+
+  color: #ffdd00;
+
+  font-size: 0.75rem;
+  font-weight: 900;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.start-item {
+  width: 100%;
+
+  margin-bottom: 5px;
+  padding: 9px;
+
+  border: 2px solid #120052;
+  border-radius: 6px;
+
+  background: #ff6f00;
+  color: #000;
+
+  font-family: var(--font);
+  font-weight: 900;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.start-item:hover {
+  background: #ffdd00;
+}
+
+/* =========================================================
    TABLET
    ========================================================= */
 
@@ -735,9 +1261,7 @@ main {
   #all-contents {
     width: 96%;
     height: 92dvh;
-
     padding: 6px;
-
     border-radius: 10px;
   }
 
@@ -755,7 +1279,6 @@ main {
 
   .nav-li a {
     font-size: 0.7rem;
-
     padding: 4px 7px;
   }
 
@@ -777,7 +1300,6 @@ main {
 
   .link-button {
     font-size: 0.7rem;
-
     padding: 6px 12px;
   }
 
@@ -787,14 +1309,78 @@ main {
 
   .blog-header {
     margin-bottom: 35px;
-
     padding-bottom: 25px;
   }
 
   .blog-post {
     padding-bottom: 32px;
-
     margin-bottom: 32px;
+  }
+
+  /* Iframe home */
+  body.iframe-page main {
+    padding: 0 5% !important;
+    gap: 4% !important;
+  }
+
+  body.iframe-page .sidebar {
+    width: 38% !important;
+    flex-basis: 38% !important;
+  }
+
+  body.iframe-page .sidebar-img {
+    max-width: 330px !important;
+  }
+
+  body.iframe-page .content {
+    width: 50% !important;
+    flex-basis: 50% !important;
+  }
+
+  body.iframe-page .content h1 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem) !important;
+  }
+
+  /* Desktop */
+  #desktop-icons {
+    top: 10px;
+    left: 10px;
+    gap: 10px;
+  }
+
+  .desktop-app {
+    width: 75px;
+  }
+
+  .app-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 32px;
+  }
+
+  .app-name {
+    font-size: 0.65rem;
+  }
+
+  .desktop-window {
+    width: 92vw;
+    height: 82vh;
+    padding: 6px;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .desktop-window nav {
+    min-height: 32px;
+  }
+
+  .window-control {
+    width: 22px;
+    height: 22px;
+  }
+
+  .taskbar-window {
+    min-width: 90px;
   }
 }
 
@@ -806,7 +1392,6 @@ main {
   #all-contents {
     width: 98%;
     height: 94dvh;
-
     padding: 4px;
   }
 
@@ -816,7 +1401,6 @@ main {
 
   .nav-li a {
     font-size: 0.65rem;
-
     padding: 3px 5px;
   }
 
@@ -846,7 +1430,6 @@ main {
 
   .link-button {
     font-size: 0.65rem;
-
     padding: 6px 10px;
   }
 
@@ -868,182 +1451,14 @@ main {
 
   .blog-post p {
     font-size: 0.85rem;
-
     line-height: 1.6;
   }
 
   .post-date {
     font-size: 0.62rem;
   }
-}
 
-/* =========================================================
-   SHORT SCREENS
-   ========================================================= */
-
-@media (max-height: 600px) {
-  #all-contents {
-    height: 94dvh;
-  }
-
-  .sidebar-img {
-    width: clamp(140px, 22vw, 260px);
-  }
-}
-
-/* =========================================================
-   =========================================================
-   IFRAME HOME PAGE
-   =========================================================
-   ========================================================= */
-
-html:has(body.iframe-page),
-body.iframe-page {
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-body.iframe-page {
-  min-height: 100% !important;
-  display: block !important;
-  background: var(--pri-color) !important;
-  background-image: none !important;
-  overflow: hidden !important;
-}
-
-/* =========================================================
-   IFRAME HOME MAIN
-   ========================================================= */
-
-body.iframe-page main {
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  margin: 0 !important;
-  padding: 0 7% !important;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 7% !important;
-  background: var(--pri-color) !important;
-  border-radius: 0 !important;
-  overflow: hidden !important;
-}
-
-/* =========================================================
-   IFRAME HOME CHARACTER
-   ========================================================= */
-
-body.iframe-page .sidebar {
-  width: 34% !important;
-  height: 100% !important;
-  flex: 0 0 34% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-body.iframe-page .sidebar-img {
-  width: 100% !important;
-  max-width: 410px !important;
-  height: auto !important;
-  aspect-ratio: 3 / 4 !important;
-  object-fit: contain !important;
-  display: block !important;
-  border-radius: 16px !important;
-}
-
-/* =========================================================
-   IFRAME HOME CONTENT
-   ========================================================= */
-
-body.iframe-page .content {
-  width: 45% !important;
-  max-width: 520px !important;
-  flex: 0 1 45% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  gap: 6px !important;
-}
-
-/* =========================================================
-   IFRAME HOME TITLE
-   ========================================================= */
-
-body.iframe-page .content h1 {
-  margin: 0 0 10px !important;
-  font-size: clamp(1.9rem, 3.8vw, 2.7rem) !important;
-  line-height: 1.1 !important;
-  color: #ffdd00 !important;
-  text-align: center !important;
-}
-
-/* =========================================================
-   IFRAME HOME INTERESTS
-   ========================================================= */
-
-body.iframe-page #interests {
-  width: 100% !important;
-  margin: 0 !important;
-}
-
-body.iframe-page #interests h3 {
-  margin: 0 0 10px !important;
-  font-size: clamp(0.65rem, 0.85vw, 0.8rem) !important;
-}
-
-body.iframe-page #interests ul {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 7px !important;
-}
-
-body.iframe-page #interests li {
-  font-size: clamp(0.75rem, 0.95vw, 0.95rem) !important;
-  padding: 7px 14px !important;
-}
-
-/* =========================================================
-   TABLET IFRAME HOME
-   ========================================================= */
-
-@media (max-width: 700px) {
-  body.iframe-page main {
-    padding: 0 5% !important;
-    gap: 4% !important;
-  }
-
-  body.iframe-page .sidebar {
-    width: 38% !important;
-    flex-basis: 38% !important;
-  }
-
-  body.iframe-page .sidebar-img {
-    max-width: 330px !important;
-  }
-
-  body.iframe-page .content {
-    width: 50% !important;
-    flex-basis: 50% !important;
-  }
-
-  body.iframe-page .content h1 {
-    font-size: clamp(1.7rem, 4vw, 2.5rem) !important;
-  }
-}
-
-/* =========================================================
-   PHONE IFRAME HOME
-   ========================================================= */
-
-@media (max-width: 450px) {
+  /* Iframe home */
   body.iframe-page main {
     flex-direction: column !important;
     padding: 15px 4% !important;
@@ -1070,607 +1485,8 @@ body.iframe-page #interests li {
   body.iframe-page .content h1 {
     font-size: 2rem !important;
   }
-}
 
-/* =========================================================
-   IFRAME BLOG FIX
-   ========================================================= */
-
-body.iframe-page:has(.blog-main) {
-  overflow: hidden !important;
-}
-
-body.iframe-page:has(.blog-main) main.blog-main {
-  height: 100% !important;
-  min-height: 0 !important;
-
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-
-  display: block !important;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* =========================================================
-   DESKTOP
-   ========================================================= */
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-
-  width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-}
-
-body {
-  background: var(--pri-color);
-  color: #ffdd00;
-  font-family: var(--font);
-
-  background-image: conic-gradient(
-    /*weirdest fix ever but it works on mobile so i don't give a fuh*/ #000 25%,
-    #ff6600 0 50%,
-    #000 0 75%,
-    #ff6600 0
-  );
-  background-position: 58px 0px; /*pixel for pixel! (my ocd is weird okay)*/
-  background-size: 116px 116px;
-}
-
-/* =========================================================
-   DESKTOP
-   ========================================================= */
-
-#desktop {
-  position: fixed;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-}
-
-/* =========================================================
-   DESKTOP APP ICONS
-   ========================================================= */
-
-#desktop-icons {
-  position: absolute;
-
-  top: 20px;
-  left: 20px;
-
-  height: calc(100% - 40px);
-
-  display: flex;
-
-  flex-direction: column;
-  flex-wrap: wrap;
-
-  align-items: center;
-  align-content: flex-start;
-
-  gap: 18px;
-
-  z-index: 1;
-}
-
-.desktop-app {
-  width: 90px;
-
-  flex: 0 0 auto;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 7px;
-
-  border: 2px solid transparent;
-  border-radius: 7px;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  font-family: var(--font);
-
-  cursor: pointer;
-
-  user-select: none;
-
-  text-shadow:
-    2px 2px 0 #120052,
-    -1px -1px 0 #120052,
-    1px -1px 0 #120052,
-    -1px 1px 0 #120052;
-}
-
-.desktop-app:hover {
-  background: rgba(18, 0, 82, 0.35);
-
-  border-color: rgba(255, 221, 0, 0.8);
-}
-
-.desktop-app:active {
-  background: rgba(18, 0, 82, 0.55);
-}
-
-.app-icon {
-  width: 55px;
-  height: 55px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 5px;
-
-  font-size: 38px;
-
-  filter: drop-shadow(3px 3px 0 #120052);
-}
-
-.app-name {
-  width: 100%;
-
-  font-size: 0.72rem;
-
-  font-weight: 900;
-
-  text-align: center;
-
-  line-height: 1.1;
-
-  word-break: break-word;
-}
-
-/* =========================================================
-   WINDOW AREA
-   ========================================================= */
-
-#window-area {
-  position: absolute;
-
-  inset: 0;
-
-  padding-bottom: 55px;
-
-  pointer-events: none;
-}
-
-/* =========================================================
-   MAIN WINDOW
-   THIS IS BASED ON YOUR ORIGINAL #all-contents
-   ========================================================= */
-
-.desktop-window {
-  width: min(92%, 1200px);
-  height: min(90dvh, 800px);
-
-  margin: 0;
-  padding: 8px;
-
-  background: #1a1a2e;
-
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: column;
-
-  overflow: hidden;
-
-  position: absolute;
-
-  pointer-events: auto;
-}
-
-/* =========================================================
-   ACTIVE WINDOW
-   ========================================================= */
-
-.desktop-window.active {
-  outline: 2px solid #ffdd00;
-  outline-offset: 0;
-}
-
-/* =========================================================
-   NAVIGATION / TITLE BAR
-   ORIGINAL STYLE
-   ========================================================= */
-
-.desktop-window nav {
-  flex: 0 0 8.5%;
-
-  width: 100%;
-
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0 1.5%;
-
-  background: #1a1a2e;
-
-  border-radius: 8px 8px 0 0;
-
-  cursor: grab;
-
-  user-select: none;
-}
-
-.desktop-window nav:active {
-  cursor: grabbing;
-}
-
-.desktop-window nav h1 {
-  margin: 0;
-
-  font-size: clamp(0.65rem, 0.7vw, 0.8rem);
-
-  font-weight: 700;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.2em;
-
-  color: var(--pri-color);
-}
-
-.desktop-window {
-  position: absolute;
-  width: 600px;
-  height: 450px;
-  min-width: 250px;
-  min-height: 150px;
-}
-
-.window-resize-handle {
-  position: absolute;
-
-  right: 0;
-  bottom: 0;
-
-  width: 16px;
-  height: 16px;
-
-  z-index: 9999;
-
-  cursor: nwse-resize;
-}
-
-/* =========================================================
-   WINDOW CONTROLS
-   ========================================================= */
-
-.window-controls {
-  display: flex;
-
-  align-items: center;
-
-  gap: 4px;
-}
-
-.window-control {
-  width: 24px;
-  height: 24px;
-
-  padding: 0;
-
-  border: 2px solid #120052;
-
-  border-radius: 5px;
-
-  background: #ff6f00;
-
-  color: #000;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 13px;
-  font-weight: 900;
-
-  line-height: 1;
-
-  cursor: pointer;
-}
-
-.window-control:hover {
-  background: #ffdd00;
-}
-
-.window-control.close:hover {
-  background: #ff3333;
-
-  color: #ffffff;
-}
-
-/* =========================================================
-   IFRAME
-   ========================================================= */
-
-.desktop-window iframe {
-  width: 100%;
-  height: 100%;
-
-  flex: 1 1 auto;
-
-  min-height: 0;
-
-  border: none;
-
-  display: block;
-
-  background: var(--pri-color);
-}
-
-/* =========================================================
-   MINIMIZED
-   ========================================================= */
-
-.desktop-window.minimized {
-  display: none;
-}
-
-/* =========================================================
-   MAXIMIZED
-   ========================================================= */
-
-.desktop-window.maximized {
-  left: 8px !important;
-  top: 8px !important;
-
-  width: calc(100% - 16px) !important;
-  height: calc(100% - 71px) !important;
-
-  max-width: none;
-
-  border-radius: 8px;
-}
-
-/* =========================================================
-   TASKBAR
-   ========================================================= */
-
-#taskbar {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  height: 55px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 5px;
-
-  padding: 6px;
-
-  background: #1a1a2e;
-
-  border-top: 3px solid #120052;
-
-  z-index: 5;
-}
-
-#start-button {
-  height: 38px;
-
-  padding: 0 14px;
-
-  border: 2px solid #120052;
-
-  border-radius: 6px;
-
-  background: #ff6f00;
-
-  color: #000000;
-
-  font-family: var(--font);
-  src: var(--font-src);
-  font-size: 0.75rem;
-
-  font-weight: 900;
-
-  cursor: pointer;
-}
-
-#start-button:hover {
-  background: #ffdd00;
-}
-
-#taskbar-windows {
-  display: flex;
-
-  align-items: center;
-
-  gap: 5px;
-
-  flex: 1;
-
-  min-width: 0;
-
-  overflow-x: auto;
-}
-
-.taskbar-window {
-  height: 38px;
-
-  min-width: 110px;
-  max-width: 180px;
-
-  padding: 0 12px;
-
-  border: 2px solid #120052;
-
-  border-radius: 6px;
-
-  background: #ff6f00;
-
-  color: #000000;
-
-  font-family: var(--font);
-  src: var(--font-src);
-  font-size: 0.72rem;
-
-  font-weight: 900;
-
-  cursor: pointer;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-}
-
-.taskbar-window:hover {
-  background: #ffdd00;
-}
-
-.taskbar-window.active {
-  background: #ffdd00;
-
-  color: #120052;
-}
-
-/* =========================================================
-   START MENU
-   ========================================================= */
-
-#start-menu {
-  position: absolute;
-
-  left: 6px;
-  bottom: 61px;
-
-  width: 230px;
-
-  padding: 10px;
-
-  background: #1a1a2e;
-
-  border-radius: 10px;
-
-  display: none;
-
-  z-index: 100000;
-}
-
-#start-menu.open {
-  display: block;
-}
-
-.start-title {
-  margin: 5px 7px 10px;
-
-  color: #ffdd00;
-
-  font-size: 0.75rem;
-
-  font-weight: 900;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.1em;
-}
-
-.start-item {
-  width: 100%;
-
-  margin-bottom: 5px;
-
-  padding: 9px;
-
-  border: 2px solid #120052;
-
-  border-radius: 6px;
-
-  background: #ff6f00;
-
-  color: #000;
-
-  font-family: var(--font);
-  src: var(--font-src);
-  font-weight: 900;
-
-  text-align: left;
-
-  cursor: pointer;
-}
-
-.start-item:hover {
-  background: #ffdd00;
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-  #desktop-icons {
-    top: 10px;
-    left: 10px;
-
-    gap: 10px;
-  }
-
-  .desktop-app {
-    width: 75px;
-  }
-
-  .app-icon {
-    width: 48px;
-    height: 48px;
-
-    font-size: 32px;
-  }
-
-  .app-name {
-    font-size: 0.65rem;
-  }
-
-  .desktop-window {
-    width: 92vw;
-    height: 82vh;
-
-    padding: 6px;
-
-    border-radius: 10px;
-  }
-
-  .desktop-window nav {
-    min-height: 32px;
-  }
-
-  .window-control {
-    width: 22px;
-    height: 22px;
-  }
-
-  .taskbar-window {
-    min-width: 90px;
-  }
-}
-
-@media (max-width: 450px) {
+  /* Desktop */
   #desktop-icons {
     gap: 8px;
   }
@@ -1682,7 +1498,7 @@ body {
   .app-icon {
     width: 42px;
     height: 42px;
-
+    object-fit: cover;
     font-size: 28px;
   }
 
@@ -1693,7 +1509,6 @@ body {
   .desktop-window {
     width: 95vw;
     height: 82vh;
-
     padding: 4px;
   }
 
@@ -1704,19 +1519,30 @@ body {
   .window-control {
     width: 20px;
     height: 20px;
-
     font-size: 11px;
   }
 
   #start-button {
     padding: 0 9px;
-
     font-size: 0.65rem;
   }
 
   .taskbar-window {
     min-width: 80px;
-
     font-size: 0.62rem;
+  }
+}
+
+/* =========================================================
+   SHORT SCREENS
+   ========================================================= */
+
+@media (max-height: 600px) {
+  #all-contents {
+    height: 94dvh;
+  }
+
+  .sidebar-img {
+    width: clamp(140px, 22vw, 260px);
   }
 }

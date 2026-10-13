@@ -21,6 +21,7 @@ function createWindow(url, title) {
 
   windowElement.style.left = `${80 + offset * 30}px`;
   windowElement.style.top = `${50 + offset * 25}px`;
+
   windowElement.style.zIndex = ++highestZ;
 
   windowElement.innerHTML = `
@@ -57,6 +58,8 @@ function createWindow(url, title) {
 
   windowArea.appendChild(windowElement);
 
+  windowElement.style.width = "950px";
+  windowElement.style.height = "600px";
   setupWindow(windowElement);
 
   createTaskbarButton(windowElement, title);

@@ -1,0 +1,337 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body.iframe-page {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+body.iframe-page main {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 30px 3% !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  gap: 3% !important;
+
+  background: var(--pri-color) !important;
+  border-radius: 0 !important;
+
+  overflow: hidden !important;
+}
+
+body.iframe-page .sidebar {
+  width: 34% !important;
+  height: 100% !important;
+
+  flex: 0 0 34% !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-width: 0 !important;
+}
+
+body.iframe-page .sidebar-img {
+  width: 100% !important;
+  max-width: 410px !important;
+
+  height: auto !important;
+  max-height: 100% !important;
+
+  object-fit: contain !important;
+
+  border-radius: 16px !important;
+  align-self: center;
+}
+
+body.iframe-page .content-column {
+  flex: 1 1 0 !important;
+
+  width: 0 !important;
+  max-width: none !important;
+
+  height: 100% !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+
+  display: block !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  padding-right: 10px !important;
+}
+
+body.iframe-page .content-column .content {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  text-align: center !important;
+  gap: 6px !important;
+
+  margin-bottom: 50px !important;
+}
+
+body.iframe-page .content h1 {
+  width: 100% !important;
+
+  margin: 0 0 10px !important;
+
+  font-size: clamp(1.9rem, 3.8vw, 2.7rem) !important;
+
+  line-height: 1.1 !important;
+
+  color: #ffdd00 !important;
+
+  text-align: center !important;
+}
+
+body.iframe-page .content h4 {
+  width: 100% !important;
+
+  margin: -5px 0 0;
+
+  font-size: 85%;
+
+  color: #ffdd00;
+
+  line-height: 1.2;
+}
+
+.pan-text {
+  /* Stolen From CherryTheCool (https://goddess.nekoweb.org/) */
+  background: linear-gradient(
+    to right,
+    #ff218c 0%,
+    #ff218c 27%,
+    #ffd800 40%,
+    #ffd800 60%,
+    #21b1ff 73%,
+    #21b1ff 100%
+  );
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.genderfluid-text {
+  background: linear-gradient(
+    to right,
+    #ff75a2 0%,
+    #ff75a2 16%,
+    #ffffff 28%,
+    #ffffff 34%,
+    #be18d6 45%,
+    #be18d6 55%,
+    #000000 66%,
+    #000000 72%,
+    #333ebd 84%,
+    #333ebd 100%
+  );
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.rainbow-text {
+  background: linear-gradient(
+    to right,
+    #ff0000 0%,
+    #ff7f00 16.6%,
+    #ffff00 33.3%,
+    #00ff00 50%,
+    #0000ff 66.6%,
+    #4b0082 83.3%,
+    #9400d3 100%
+  );
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.shake {
+  animation: shake 0.3s steps(1) infinite;
+  animation-delay: var(--d);
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+
+  20% {
+    transform: translate(-1px, -1px);
+  }
+
+  40% {
+    transform: translate(-2px, 1px);
+  }
+
+  60% {
+    transform: translate(2px, -1px);
+  }
+
+  80% {
+    transform: translate(-1px, 2px);
+  }
+
+  100% {
+    transform: translate(1px, -2px);
+  }
+}
+
+.fandom-logos {
+  display: flex;
+  gap: 15px;
+}
+
+.fandom-logos img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  body.iframe-page main {
+    padding: 30px 3% !important;
+    gap: 3% !important;
+  }
+
+  body.iframe-page .sidebar {
+    width: 32% !important;
+    flex: 0 0 32% !important;
+  }
+
+  body.iframe-page .content h1 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem) !important;
+  }
+}
+
+@media (max-width: 450px) {
+  html,
+  body.iframe-page {
+    height: auto !important;
+    min-height: 100% !important;
+  }
+
+  body.iframe-page main {
+    height: auto !important;
+    min-height: 100% !important;
+
+    flex-direction: column !important;
+
+    padding: 15px 4% !important;
+    gap: 15px !important;
+
+    overflow: visible !important;
+  }
+
+  body.iframe-page .sidebar {
+    width: 100% !important;
+    height: auto !important;
+
+    flex: 0 0 auto !important;
+  }
+
+  body.iframe-page .content-column {
+    width: 100% !important;
+    height: auto !important;
+
+    max-width: 100% !important;
+
+    flex: 0 0 auto !important;
+
+    overflow: visible !important;
+  }
+
+  body.iframe-page .content-column .content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.iframe-page .content h1 {
+    font-size: 2rem !important;
+  }
+}
+
+.fandom-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.fandom-logos > * {
+  flex: 0 0 auto;
+}
+
+.fandom-heart {
+  position: relative;
+
+  width: 100px;
+  height: 100px;
+
+  flex: 0 0 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fandom-heart img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  position: relative;
+  z-index: 1;
+}
+
+.fandom-heart::after {
+  content: "♡";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-family: Arial, sans-serif;
+  font-size: 125px;
+  font-weight: normal;
+  line-height: 1;
+
+  color: #ff4f81;
+
+  z-index: 2;
+  pointer-events: none;
+}

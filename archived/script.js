@@ -4,6 +4,12 @@ const photoExplorerFileSystem = {
 
   children: [
     {
+      name: "Legacy Home",
+      type: "link",
+      url: "archived/legacy-home/index.html",
+      textImageThing: "🏠",
+    },
+    {
       name: "Birthday Bash 2026!",
       type: "link",
       url: "archived/birthday-bash-26/index.html",
