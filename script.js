@@ -469,6 +469,8 @@ function escapeAttribute(text) {
     .replace(/>/g, "&gt;");
 }
 
+createWindow("about/index.html", "About");
+
 const jumper = document.getElementById("jumper");
 
 let x = 50;
