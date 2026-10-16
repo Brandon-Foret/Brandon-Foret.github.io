@@ -631,11 +631,6 @@ function animate(currentTime) {
   requestAnimationFrame(animate);
 
   const elapsed = currentTime - lastTime;
-
-  if (elapsed < baseFrameTime) {
-    return;
-  }
-
   const frameScale = Math.min(elapsed / baseFrameTime, 3);
 
   lastTime = currentTime;
