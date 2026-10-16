@@ -265,32 +265,6 @@ const photoExplorerFileSystem = {
               ],
             },
             {
-              name: "Brandon With Basil",
-              type: "folder",
-              children: [
-                {
-                  name: "Basil Hugging Brandon",
-                  type: "image",
-                  imagePath: "brandon/with-basil/image 8.PNG",
-                },
-                {
-                  name: "Basil Comforting Brandon",
-                  type: "image",
-                  imagePath: "brandon/with-basil/image 9.PNG",
-                },
-                {
-                  name: "Sleepy Brandon With Basil",
-                  type: "image",
-                  imagePath: "brandon/with-basil/image 10.PNG",
-                },
-                {
-                  name: "Brandon Licking Basil",
-                  type: "image",
-                  imagePath: "brandon/with-basil/SPOILER_image.PNG",
-                },
-              ],
-            },
-            {
               name: "Kitty Emoji's",
               type: "folder",
               children: [
